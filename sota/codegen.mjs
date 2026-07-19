@@ -418,11 +418,13 @@ const gallery = `<!doctype html>
   <link rel="stylesheet" href="it-tokens.css">
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; color: var(--it-color-text); }
+    html, body { margin: 0; color: var(--it-color-text); overflow-x: hidden; max-width: 100%; }
+    img, table { max-width: 100%; }
     header.top { background: var(--it-color-primary); color: #fff; padding: 1.25rem 1.5rem; }
     header.top h1 { margin: 0; font-size: 1.4rem; }
     header.top p { margin: .25rem 0 0; opacity: .9; font-size: .95rem; }
-    .layout { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+    .layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 2rem; max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+    main { min-width: 0; } .cmp, .preview, .code { min-width: 0; max-width: 100%; }
     nav.toc { position: sticky; top: 1rem; align-self: start; }
     nav.toc a { display: block; padding: .35rem .5rem; border-radius: var(--it-radius-sm); color: var(--it-color-primary); text-decoration: none; font-weight: 600; }
     nav.toc a:hover { background: var(--it-color-info-bg); }
@@ -551,7 +553,7 @@ const gallery = `<!doctype html>
     .agid-dt-pager .agid-page-link.is-current { background: var(--it-color-primary); color: #fff; border-color: var(--it-color-primary); }
     .agid-dt-pager .agid-page-link[disabled] { opacity: .4; cursor: not-allowed; }
     [hidden] { display: none !important; }
-    @media (max-width: 720px) { .layout { grid-template-columns: 1fr; } nav.toc { position: static; } }
+    @media (max-width: 720px) { .layout { grid-template-columns: minmax(0, 1fr); } nav.toc { position: static; } }
   </style>
 </head>
 <body>
@@ -604,7 +606,9 @@ const esempioComune = `<!doctype html>
   <link href="https://cdn.jsdelivr.net/npm/@fontsource/titillium-web@5/index.min.css" rel="stylesheet">
   <link rel="stylesheet" href="it-tokens.css">
   <style>
-    body { margin: 0; }
+    html, body { margin: 0; overflow-x: hidden; max-width: 100%; }
+    * { box-sizing: border-box; }
+    img, table { max-width: 100%; }
     .container { max-width: 1040px; margin: 0 auto; padding: 0 1rem; }
     main { padding: 1.5rem 0 3rem; }
     h1, h2 { color: var(--it-color-text); }
@@ -726,7 +730,9 @@ const servizioMensa = `<!doctype html>
   <link href="https://cdn.jsdelivr.net/npm/@fontsource/titillium-web@5/index.min.css" rel="stylesheet">
   <link rel="stylesheet" href="it-tokens.css">
   <style>
-    body { margin: 0; }
+    html, body { margin: 0; overflow-x: hidden; max-width: 100%; }
+    * { box-sizing: border-box; }
+    img, table { max-width: 100%; }
     .container { max-width: 1040px; margin: 0 auto; padding: 0 1rem; }
     main { padding: 1.5rem 0 3rem; }
     h1, h2 { color: var(--it-color-text); }

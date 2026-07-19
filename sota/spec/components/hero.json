@@ -15,7 +15,7 @@
   },
   "slot": "Testo di accompagnamento",
   "render": "<div class=\"agid-hero\"><span class=\"agid-hero-cat\">{{attr category}}</span><h1 class=\"agid-hero-title\">{{attr title}}</h1><p class=\"agid-hero-text\">{{slot}}</p></div>",
-  "style": "it-hero{display:block} it-hero .agid-hero{background:var(--it-color-primary);color:#fff;padding:var(--it-space-lg);border-radius:var(--it-radius-md)} it-hero .agid-hero-cat{display:inline-block;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem;opacity:.85} it-hero .agid-hero-cat:empty{display:none} it-hero .agid-hero-title{margin:.25rem 0} it-hero .agid-hero-text{margin:0;opacity:.95}",
+  "style": "it-hero{display:block} it-hero .agid-hero{background:var(--it-color-primary);color:#fff;padding:var(--it-space-lg);border-radius:var(--it-radius-md)} it-hero .agid-hero-cat{display:inline-block;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem;opacity:.85} it-hero .agid-hero-cat:empty{display:none} it-hero .agid-hero-title{margin:.25rem 0;color:#fff} it-hero .agid-hero-text{margin:0;opacity:.95;color:#fff}",
   "a11y": [
     "Se contiene il titolo di pagina deve essere l'unico <h1>",
     "Verifica il contrasto del testo sullo sfondo"
