@@ -34,6 +34,18 @@ Note più estese: **[VISION.md](VISION.md)**.
 
 > 🤖 Realizzato in gran parte in **vibe coding**, insieme a un assistente AI — coerente con lo spirito LLM-first del progetto. Da leggere e verificare con spirito critico, non come codice "pronto per la produzione".
 
+## Perché è più integrabile con gli LLM dei kit AgID originali
+
+I kit ufficiali (Bootstrap Italia, design-react-kit…) sono pensati per sviluppatori *umani*. Rispetto a quelli, qui l'LLM parte avvantaggiato per ragioni concrete:
+
+1. **La conoscenza arriva all'LLM in forma machine-readable.** MCP, `llms.txt` e i contratti mettono componenti e regole *nel contesto* del modello. I kit originali hanno solo documentazione per umani: l'LLM deve "ricordarsela" e spesso sbaglia.
+2. **Molto meno boilerplate.** `<it-dialog>` è un tag; l'equivalente in Bootstrap Italia sono ~20 righe di `div` annidati con classi. Meno token da generare = meno errori.
+3. **Accessibilità incapsulata (corretta per costruzione).** L'LLM non può "dimenticare" gli ARIA/focus/tastiera: li fornisce il componente (macchine Zag). Col markup grezzo l'a11y è convenzione, e i modelli la perdono.
+4. **Un solo tag, tutti i framework.** `<it-…>` funziona in React/Vue/Angular/HTML: l'LLM non deve scegliere fra react-kit, angular-kit o vanilla.
+5. **Loop di verifica.** `validate_snippet` fa autocorreggere l'LLM contro il design system — non esiste nei kit originali.
+
+In una riga: i kit originali *si possono* usare con un LLM, ma glielo devi spiegare ogni volta; qui la spiegazione è **integrata e verificabile**.
+
 ## Per chi sviluppa — cosa devi fare, in pratica
 
 Scegli lo scenario che ti riguarda.

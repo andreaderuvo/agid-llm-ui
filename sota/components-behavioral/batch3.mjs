@@ -2,6 +2,7 @@
  * batch3.mjs — componenti presentazionali con parsing dei figli (DOM puro, no Zag):
  * it-breadcrumb, it-pagination, it-linklist, it-timeline, it-navbar, it-sidebar.
  */
+import { t as i18n } from "../runtime/i18n.mjs";
 const el = (t, c) => { const n = document.createElement(t); if (c) n.className = c; return n; };
 const readLinks = (host) => [...host.querySelectorAll("a")].map((a) => ({ href: a.getAttribute("href"), text: a.textContent.trim() }));
 
@@ -86,7 +87,7 @@ class ItNavbar extends HTMLElement {
     const listId = "navlist-" + ++__navUid;
     const toggle = el("button", "agid-navbar-toggle"); toggle.type = "button";
     toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-controls", listId);
-    toggle.setAttribute("aria-label", "Apri o chiudi il menu di navigazione"); toggle.textContent = "☰";
+    toggle.setAttribute("aria-label", i18n("menuToggle")); toggle.textContent = "☰";
     const ul = el("ul", "agid-navbar-list"); ul.id = listId;
     links.forEach((l, i) => {
       const li = el("li"); const a = el("a", "agid-navbar-link"); a.href = l.href || "#"; a.textContent = l.text;

@@ -6,6 +6,7 @@
  */
 import * as dialog from "@zag-js/dialog";
 import { createService, normalizeProps, spreadProps } from "../runtime/zag-runtime.mjs";
+import { t as i18n } from "../runtime/i18n.mjs";
 
 let uid = 0;
 const el = (t, c) => { const n = document.createElement(t); if (c) n.className = c; return n; };
@@ -30,7 +31,7 @@ class ItDrawer extends HTMLElement {
         <div data-el="content" class="agid-drawer">
           <div class="agid-drawer-head">
             <h2 data-el="title" class="agid-drawer-title"></h2>
-            <button data-el="close" type="button" class="agid-drawer-close" aria-label="Chiudi il pannello">×</button>
+            <button data-el="close" type="button" class="agid-drawer-close" aria-label="${i18n("closePanel")}">×</button>
           </div>
           <div data-el="body" class="agid-drawer-body"></div>
         </div>

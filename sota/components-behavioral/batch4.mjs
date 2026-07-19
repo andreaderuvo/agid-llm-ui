@@ -11,6 +11,7 @@ import * as fileUpload from "@zag-js/file-upload";
 import * as carousel from "@zag-js/carousel";
 import * as datePicker from "@zag-js/date-picker";
 import { createService, normalizeProps, spreadProps } from "../runtime/zag-runtime.mjs";
+import { t as i18n } from "../runtime/i18n.mjs";
 
 let uid = 0;
 const el = (t, c) => { const n = document.createElement(t); if (c) n.className = c; return n; };
@@ -153,7 +154,7 @@ class ItUpload extends HTMLElement {
     const labelText = this.getAttribute("label") || "Allegati"; this.innerHTML = "";
     const root = el("div", "agid-upload"); const label = el("label", "agid-label"); label.textContent = labelText;
     const dropzone = el("div", "agid-upload-drop");
-    const trigger = el("button", "agid-btn agid-btn-outline"); trigger.type = "button"; trigger.textContent = "Scegli file";
+    const trigger = el("button", "agid-btn agid-btn-outline"); trigger.type = "button"; trigger.textContent = i18n("chooseFile");
     const input = el("input"); const list = el("ul", "agid-upload-list");
     dropzone.append(trigger); root.append(label, dropzone, input, list); this.appendChild(root);
     boot(this, fileUpload.machine, { id: "up-" + ++uid }, (s) => {

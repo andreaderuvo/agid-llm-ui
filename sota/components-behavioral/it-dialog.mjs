@@ -8,6 +8,7 @@
  */
 import * as dialog from "@zag-js/dialog";
 import { createService, normalizeProps, spreadProps } from "../runtime/zag-runtime.mjs";
+import { t } from "../runtime/i18n.mjs";
 
 let uid = 0;
 
@@ -38,7 +39,7 @@ class ItDialog extends HTMLElement {
           <h2 data-el="title" class="zag-title"></h2>
           <div data-el="desc" class="zag-desc"></div>
           <div class="zag-actions">
-            <button data-el="close" type="button" class="agid-btn agid-btn-outline">Chiudi</button>
+            <button data-el="close" type="button" class="agid-btn agid-btn-outline">${t("close")}</button>
           </div>
         </div>
       </div>`;

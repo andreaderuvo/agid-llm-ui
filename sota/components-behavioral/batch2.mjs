@@ -9,6 +9,7 @@ import * as menu from "@zag-js/menu";
 import * as steps from "@zag-js/steps";
 import * as rating from "@zag-js/rating-group";
 import { createService, normalizeProps, spreadProps } from "../runtime/zag-runtime.mjs";
+import { t } from "../runtime/i18n.mjs";
 
 let uid = 0;
 const el = (tag, cls) => { const n = document.createElement(tag); if (cls) n.className = cls; return n; };
@@ -123,8 +124,8 @@ class ItSteps extends HTMLElement {
     });
     items.forEach((it, i) => { const c = el("div", "agid-step-content"); c.innerHTML = it.body; root.appendChild(c); contents.push(c); });
     const nav = el("div", "agid-steps-nav");
-    const prev = el("button", "agid-btn agid-btn-outline"); prev.type = "button"; prev.textContent = "Indietro";
-    const next = el("button", "agid-btn"); next.type = "button"; next.textContent = "Avanti";
+    const prev = el("button", "agid-btn agid-btn-outline"); prev.type = "button"; prev.textContent = t("prev");
+    const next = el("button", "agid-btn"); next.type = "button"; next.textContent = t("next");
     nav.append(prev, next); root.appendChild(nav); this.appendChild(root);
     boot(this, steps.machine, () => ({ id: "steps-" + ++uid, count: items.length }), (s) => {
       const a = steps.connect(s, normalizeProps);

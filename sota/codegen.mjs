@@ -603,6 +603,9 @@ const esempioComune = `<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Comune di Esempio — sito generato con agid-llm-ui</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0066CC">
+  <link rel="apple-touch-icon" href="icon.svg">
   <link href="https://cdn.jsdelivr.net/npm/@fontsource/titillium-web@5/index.min.css" rel="stylesheet">
   <link rel="stylesheet" href="it-tokens.css">
   <style>
@@ -632,7 +635,8 @@ const esempioComune = `<!doctype html>
       <strong>🤖 Esempio LLM-first.</strong>
       <span>Questa pagina è il tipo di risultato ottenibile da un prompt come: <code>${PROMPT_ESEMPIO}</code></span>
       <a href="https://github.com/andreaderuvo/agid-llm-ui" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a>
-      <button type="button" class="prompt-close" aria-label="Chiudi il messaggio" style="margin-left:auto;background:transparent;border:0;color:#fff;font-size:1.4rem;line-height:1;cursor:pointer">×</button>
+      <span class="lang-switch" style="display:inline-flex;gap:.25rem;margin-left:auto">🌐 <button type="button" data-lang="it" style="background:transparent;border:1px solid #ffffff66;color:#fff;border-radius:4px;padding:.1em .5em;cursor:pointer;font:inherit;font-size:.85rem">IT</button><button type="button" data-lang="en" style="background:transparent;border:1px solid #ffffff66;color:#fff;border-radius:4px;padding:.1em .5em;cursor:pointer;font:inherit;font-size:.85rem">EN</button></span>
+      <button type="button" class="prompt-close" aria-label="Chiudi il messaggio" style="background:transparent;border:0;color:#fff;font-size:1.4rem;line-height:1;cursor:pointer">×</button>
     </div>
   </div>
 
@@ -727,6 +731,8 @@ const esempioComune = `<!doctype html>
           document.querySelectorAll('.color-switcher button[data-c]').forEach(function (b) { b.addEventListener('click', function () { setColor(b.dataset.c, b.dataset.h); }); });
           var inp = document.querySelector('.color-switcher input[type=color]'); if (inp) inp.addEventListener('input', function (e) { setColor(e.target.value); });
           var pc = document.querySelector('.prompt-close'); if (pc) pc.addEventListener('click', function () { var pb = pc.closest('.prompt-banner'); if (pb) pb.remove(); });
+          document.querySelectorAll('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { if (window.AgidI18n) window.AgidI18n.setLocale(b.dataset.lang); location.reload(); }); });
+          if ('serviceWorker' in navigator && location.protocol === 'https:') { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); }); }
         })();
       </script>
     </div>
@@ -865,11 +871,13 @@ h1, h2, h3 { color: var(--it-color-text); }
 .field { margin: .75rem 0; }
 .sec { margin: 2rem 0; }
 `;
+const langBtn = (l) => `<button type="button" data-lang="${l}" style="background:transparent;border:1px solid #ffffff66;color:#fff;border-radius:4px;padding:.1em .5em;cursor:pointer;font:inherit;font-size:.85rem">${l.toUpperCase()}</button>`;
+const LANG_SWITCH = `<span class="lang-switch" style="display:inline-flex;gap:.25rem;margin-left:auto">🌐 ${langBtn("it")}${langBtn("en")}</span>`;
 const promptBanner = (prompt) =>
-  `<div class="prompt-banner"><div class="container"><strong>🤖 Esempio LLM-first.</strong> <span>Generabile da: <code>${prompt}</code></span> <a href="${REPO}" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a> <button type="button" class="prompt-close" aria-label="Chiudi il messaggio">×</button></div></div>`;
+  `<div class="prompt-banner"><div class="container"><strong>🤖 Esempio LLM-first.</strong> <span>Generabile da: <code>${prompt}</code></span> <a href="${REPO}" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a> ${LANG_SWITCH} <button type="button" class="prompt-close" aria-label="Chiudi il messaggio">×</button></div></div>`;
 const navbar = (items, active) =>
   `<it-navbar>${items.map(([t, h], i) => `<a href="${h}"${i === active ? " data-active" : ""}>${t}</a>`).join("")}</it-navbar>`;
-const closeScript = `<script>(function(){var pc=document.querySelector('.prompt-close');if(pc)pc.addEventListener('click',function(){var pb=pc.closest('.prompt-banner');if(pb)pb.remove();});})();</script>`;
+const closeScript = `<script>(function(){var pc=document.querySelector('.prompt-close');if(pc)pc.addEventListener('click',function(){var pb=pc.closest('.prompt-banner');if(pb)pb.remove();});document.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){if(window.AgidI18n)window.AgidI18n.setLocale(b.dataset.lang);location.reload();});});})();</script>`;
 const pageShell = ({ title, prompt, ente, nome, tagline, nav, body, footerNome }) => `<!doctype html>
 <html lang="it">
 <head>
@@ -1048,6 +1056,45 @@ const domanda = pageShell({
     ${otherDemos}`,
 });
 writeFileSync(join(DIST, "domanda-contributo.html"), domanda);
+
+// ---------------------------------------------------------------- 8d) PWA (demo installabile/offline)
+writeFileSync(
+  join(DIST, "manifest.webmanifest"),
+  JSON.stringify({
+    name: "Comune di Esempio",
+    short_name: "Comune",
+    start_url: "esempio-comune.html",
+    scope: "./",
+    display: "standalone",
+    background_color: "#ffffff",
+    theme_color: "#0066CC",
+    lang: "it",
+    description: "Sito del Comune di Esempio — demo agid-llm-ui (PWA)",
+    icons: [{ src: "icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any maskable" }],
+  }, null, 2)
+);
+writeFileSync(
+  join(DIST, "icon.svg"),
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#0066CC"/><text x="256" y="350" font-family="'Titillium Web', system-ui, sans-serif" font-size="300" font-weight="700" fill="#ffffff" text-anchor="middle">C</text></svg>`
+);
+writeFileSync(
+  join(DIST, "sw.js"),
+  `const CACHE = 'agid-comune-v1';
+const ASSETS = ['esempio-comune.html', 'it-tokens.css', 'it-components.js', 'it-behavioral.bundle.js', 'manifest.webmanifest', 'icon.svg'];
+self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting())); });
+self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
+self.addEventListener('fetch', (e) => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then((r) => r || fetch(e.request).then((resp) => {
+      const copy = resp.clone();
+      caches.open(CACHE).then((c) => c.put(e.request, copy)).catch(() => {});
+      return resp;
+    }).catch(() => caches.match('esempio-comune.html')))
+  );
+});
+`
+);
 
 console.log("✅ Generati da spec/ ->");
 console.log("   - dist/index.html            (GALLERIA componenti, pronta per GitHub Pages)");

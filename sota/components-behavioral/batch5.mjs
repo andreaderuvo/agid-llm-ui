@@ -5,6 +5,7 @@
 import * as toast from "@zag-js/toast";
 import * as popover from "@zag-js/popover";
 import { createService, normalizeProps, spreadProps } from "../runtime/zag-runtime.mjs";
+import { t as i18n } from "../runtime/i18n.mjs";
 
 let uid = 0;
 const el = (t, c) => { const n = document.createElement(t); if (c) n.className = c; return n; };
@@ -29,7 +30,7 @@ function ensureRegion() {
       if (t.title) { const h = el("div", "agid-toast-title"); h.textContent = t.title; item.appendChild(h); }
       if (t.description) { const d = el("div"); d.textContent = t.description; item.appendChild(d); }
       const close = el("button", "agid-toast-close"); close.type = "button"; close.textContent = "×";
-      close.setAttribute("aria-label", "Chiudi la notifica");
+      close.setAttribute("aria-label", i18n("closeNotification"));
       close.addEventListener("click", () => store.dismiss(t.id));
       item.appendChild(close); region.appendChild(item);
     });

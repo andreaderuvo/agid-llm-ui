@@ -4,6 +4,7 @@
  * Accessibile: aria-sort sulle intestazioni, live region per i risultati, paginazione come <nav>.
  *   <it-datatable page-size="5" searchable><table>…</table></it-datatable>
  */
+import { t as i18n } from "../runtime/i18n.mjs";
 let uid = 0;
 const el = (t, c) => { const n = document.createElement(t); if (c) n.className = c; return n; };
 
@@ -26,7 +27,7 @@ class ItDatatable extends HTMLElement {
     let searchInput;
     if (searchable) {
       const f = el("div", "agid-dt-search");
-      const lab = el("label"); lab.textContent = "Cerca nella tabella"; lab.setAttribute("for", myId);
+      const lab = el("label"); lab.textContent = i18n("searchTable"); lab.setAttribute("for", myId);
       searchInput = el("input", "agid-input"); searchInput.type = "search"; searchInput.id = myId;
       f.append(lab, searchInput); root.appendChild(f);
     }
