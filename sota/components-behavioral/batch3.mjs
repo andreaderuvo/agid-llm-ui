@@ -78,6 +78,8 @@ let __navUid = 0;
 class ItNavbar extends HTMLElement {
   connectedCallback() {
     if (this.__i) return; this.__i = true;
+    let activeIdx = [...this.querySelectorAll("a")].findIndex((a) => a.hasAttribute("data-active"));
+    if (activeIdx < 0) activeIdx = 0;
     const links = readLinks(this); this.innerHTML = "";
     const nav = el("nav", "agid-navbar"); nav.setAttribute("aria-label", "Navigazione principale");
     const inner = el("div", "agid-navbar-inner");
@@ -88,7 +90,7 @@ class ItNavbar extends HTMLElement {
     const ul = el("ul", "agid-navbar-list"); ul.id = listId;
     links.forEach((l, i) => {
       const li = el("li"); const a = el("a", "agid-navbar-link"); a.href = l.href || "#"; a.textContent = l.text;
-      if (i === 0) { a.classList.add("is-active"); a.setAttribute("aria-current", "page"); }
+      if (i === activeIdx) { a.classList.add("is-active"); a.setAttribute("aria-current", "page"); }
       li.appendChild(a); ul.appendChild(li);
     });
     inner.append(toggle, ul); nav.appendChild(inner); this.appendChild(nav);

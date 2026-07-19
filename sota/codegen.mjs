@@ -638,11 +638,11 @@ const esempioComune = `<!doctype html>
 
   <it-header ente="Regione Esempio" nome="Comune di Esempio" tagline="Servizi digitali al cittadino"></it-header>
   <it-navbar>
-    <a href="#">Home</a>
-    <a href="#">Servizi</a>
-    <a href="#">Amministrazione</a>
-    <a href="#">Novità</a>
-    <a href="#">Contatti</a>
+    <a href="esempio-comune.html" data-active>Home</a>
+    <a href="servizio-mensa.html">Servizi</a>
+    <a href="amministrazione-trasparente.html">Amministrazione</a>
+    <a href="prenotazione.html">Prenotazioni</a>
+    <a href="domanda-contributo.html">Contributi</a>
   </it-navbar>
 
   <div class="container" style="margin-top:1.5rem">
@@ -777,11 +777,11 @@ const servizioMensa = `<!doctype html>
 
   <it-header ente="Regione Esempio" nome="Comune di Esempio" tagline="Servizi digitali al cittadino"></it-header>
   <it-navbar>
-    <a href="index.html">Home</a>
-    <a href="#">Servizi</a>
-    <a href="#">Amministrazione</a>
-    <a href="#">Novità</a>
-    <a href="#">Contatti</a>
+    <a href="esempio-comune.html">Home</a>
+    <a href="servizio-mensa.html" data-active>Servizi</a>
+    <a href="amministrazione-trasparente.html">Amministrazione</a>
+    <a href="prenotazione.html">Prenotazioni</a>
+    <a href="domanda-contributo.html">Contributi</a>
   </it-navbar>
 
   <main id="contenuto">
@@ -843,6 +843,211 @@ const servizioMensa = `<!doctype html>
 </html>
 `;
 writeFileSync(join(DIST, "servizio-mensa.html"), servizioMensa);
+
+// ---------------------------------------------------------------- 8c) altri modelli AgID (helper condivisi)
+const REPO = "https://github.com/andreaderuvo/agid-llm-ui";
+const SHARED_CSS = `
+* { box-sizing: border-box; }
+html, body { margin: 0; overflow-x: hidden; max-width: 100%; }
+img, table { max-width: 100%; }
+.container { max-width: 1040px; margin: 0 auto; padding: 0 1rem; }
+main { padding: 1.5rem 0 3rem; }
+h1, h2, h3 { color: var(--it-color-text); }
+.lead { font-size: 1.15rem; color: var(--it-color-muted); }
+.prompt-banner { background: var(--it-color-text); color: #fff; padding: 1rem 0; font-size: .95rem; }
+.prompt-banner .container { display: flex; gap: .75rem; align-items: baseline; flex-wrap: wrap; }
+.prompt-banner code { background: #ffffff22; padding: .15em .4em; border-radius: 4px; }
+.prompt-close { margin-left: auto; background: transparent; border: 0; color: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+.backlink { display: inline-block; margin: 1rem 1rem 0 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.cols { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 2rem; margin-top: 1rem; }
+@media (max-width: 768px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.field { margin: .75rem 0; }
+.sec { margin: 2rem 0; }
+`;
+const promptBanner = (prompt) =>
+  `<div class="prompt-banner"><div class="container"><strong>🤖 Esempio LLM-first.</strong> <span>Generabile da: <code>${prompt}</code></span> <a href="${REPO}" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a> <button type="button" class="prompt-close" aria-label="Chiudi il messaggio">×</button></div></div>`;
+const navbar = (items, active) =>
+  `<it-navbar>${items.map(([t, h], i) => `<a href="${h}"${i === active ? " data-active" : ""}>${t}</a>`).join("")}</it-navbar>`;
+const closeScript = `<script>(function(){var pc=document.querySelector('.prompt-close');if(pc)pc.addEventListener('click',function(){var pb=pc.closest('.prompt-banner');if(pb)pb.remove();});})();</script>`;
+const pageShell = ({ title, prompt, ente, nome, tagline, nav, body, footerNome }) => `<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${title}</title>
+  <link href="https://cdn.jsdelivr.net/npm/@fontsource/titillium-web@5/index.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="it-tokens.css">
+  <style>${SHARED_CSS}</style>
+</head>
+<body>
+  <a class="visually-hidden" href="#contenuto">Vai al contenuto</a>
+  ${promptBanner(prompt)}
+  <it-header ente="${ente}" nome="${nome}" tagline="${tagline}"></it-header>
+  ${nav}
+  <main id="contenuto"><div class="container">${body}</div></main>
+  <div style="margin-top:2rem"><it-footer nome="${footerNome}"></it-footer></div>
+  ${closeScript}
+  <script defer src="it-components.js"></script>
+  <script defer src="it-behavioral.bundle.js"></script>
+</body>
+</html>`;
+
+const COMUNE_NAV = [["Home", "esempio-comune.html"], ["Servizi", "servizio-mensa.html"], ["Amministrazione", "amministrazione-trasparente.html"], ["Prenotazioni", "prenotazione.html"], ["Contatti", "#"]];
+const otherDemos = `<div class="sec"><a class="backlink" href="esempio-comune.html">← Home del Comune</a><a class="backlink" href="index.html">Galleria componenti</a><a class="backlink" href="${REPO}">Codice su GitHub</a></div>`;
+
+// --- Amministrazione Trasparente ---
+const trasparenteTable = (caption, headers, rows) =>
+  `<it-datatable page-size="5" searchable><table><caption>${caption}</caption><thead><tr>${headers.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></it-datatable>`;
+const trasparente = pageShell({
+  title: "Amministrazione trasparente — Comune di Esempio",
+  prompt: "Crea la pagina 'Amministrazione trasparente' conforme ad AgID, con le sezioni obbligatorie e tabelle ricercabili di bandi e pagamenti.",
+  ente: "Regione Esempio", nome: "Comune di Esempio", tagline: "Servizi digitali al cittadino",
+  nav: navbar(COMUNE_NAV, 2), footerNome: "Comune di Esempio",
+  body: `
+    <it-breadcrumb><a href="esempio-comune.html">Home</a><a>Amministrazione trasparente</a></it-breadcrumb>
+    <h1>Amministrazione trasparente</h1>
+    <p class="lead">Dati e documenti che il Comune pubblica per obbligo di legge (D.lgs. 33/2013).</p>
+    <div class="cols">
+      <aside>
+        <it-sidebar title="Sezioni">
+          <a href="#bandi">Bandi di gara e contratti</a>
+          <a href="#pagamenti">Pagamenti dell'amministrazione</a>
+          <a href="#incarichi">Titolari di incarichi</a>
+        </it-sidebar>
+      </aside>
+      <div>
+        <section id="bandi" class="sec"><h2>Bandi di gara e contratti</h2>
+          ${trasparenteTable("Bandi pubblicati", ["Oggetto", "Importo", "Stato"], [["Manutenzione strade", "120.000 €", "Aggiudicato"], ["Fornitura arredi scolastici", "45.000 €", "In corso"], ["Servizio mensa 2026/27", "310.000 €", "Pubblicato"], ["Verde pubblico", "80.000 €", "Aggiudicato"], ["Illuminazione LED", "210.000 €", "In corso"], ["Software gestionale", "35.000 €", "Pubblicato"]])}
+        </section>
+        <section id="pagamenti" class="sec"><h2>Pagamenti dell'amministrazione</h2>
+          ${trasparenteTable("Pagamenti effettuati", ["Data", "Beneficiario", "Importo"], [["03/2026", "Impresa Rossi srl", "45.000 €"], ["03/2026", "Coop. Servizi", "12.300 €"], ["04/2026", "Edilscuola spa", "88.000 €"], ["04/2026", "Verde & Co.", "9.500 €"], ["05/2026", "TechPA srl", "35.000 €"], ["05/2026", "Luce Città", "62.000 €"]])}
+        </section>
+        <section id="incarichi" class="sec"><h2>Titolari di incarichi</h2>
+          ${trasparenteTable("Incarichi dirigenziali", ["Nome", "Ruolo", "Compenso annuo"], [["M. Bianchi", "Segretario generale", "95.000 €"], ["L. Verdi", "Dirigente tecnico", "82.000 €"], ["A. Neri", "Dirigente finanziario", "82.000 €"]])}
+        </section>
+      </div>
+    </div>
+    ${otherDemos}`,
+});
+writeFileSync(join(DIST, "amministrazione-trasparente.html"), trasparente);
+
+// --- Modello Scuole (home) ---
+const scuola = pageShell({
+  title: "Istituto Comprensivo Manzoni — modello Scuole",
+  prompt: "Crea la home di un sito scolastico conforme al modello Scuole di AgID: header dell'istituto, servizi (iscrizioni, orari, modulistica), notizie e footer.",
+  ente: "Ministero dell'Istruzione", nome: "Istituto Comprensivo A. Manzoni", tagline: "Scuola dell'infanzia, primaria e secondaria",
+  nav: navbar([["Home", "scuola.html"], ["La scuola", "#"], ["Servizi", "#"], ["Didattica", "#"], ["Contatti", "#"]], 0),
+  footerNome: "Istituto Comprensivo A. Manzoni",
+  body: `
+    <it-hero title="Benvenuti all'Istituto Comprensivo Manzoni" category="Home">Comunicazioni, servizi e vita scolastica in un unico posto.</it-hero>
+    <h2>Servizi per le famiglie</h2>
+    <div class="grid">
+      <it-card title="Iscrizioni">Iscrivi tuo figlio per l'anno scolastico 2026/2027. <a href="prenotazione.html">Vai →</a></it-card>
+      <it-card title="Orari e calendario">Consulta orari delle lezioni e calendario scolastico.</it-card>
+      <it-card title="Modulistica">Scarica moduli per giustificazioni, deleghe e autorizzazioni.</it-card>
+    </div>
+    <it-callout variant="info" title="Iscrizioni aperte">Le iscrizioni si effettuano online dal 10 al 30 gennaio.</it-callout>
+    <h2>Ultime comunicazioni</h2>
+    <it-timeline>
+      <div data-date="8 luglio 2026" data-title="Libri di testo 2026/2027">Pubblicati gli elenchi per tutte le classi.</div>
+      <div data-date="1 luglio 2026" data-title="Centro estivo">Aperte le adesioni al centro estivo di luglio.</div>
+    </it-timeline>
+    ${otherDemos}`,
+});
+writeFileSync(join(DIST, "scuola.html"), scuola);
+
+// --- Prenotazione appuntamento ---
+const prenotazione = pageShell({
+  title: "Prenota un appuntamento — Comune di Esempio",
+  prompt: "Crea la pagina 'prenota un appuntamento' conforme ad AgID: procedura a step con scelta dell'ufficio, data, orario e conferma.",
+  ente: "Regione Esempio", nome: "Comune di Esempio", tagline: "Servizi digitali al cittadino",
+  nav: navbar(COMUNE_NAV, 3), footerNome: "Comune di Esempio",
+  body: `
+    <it-breadcrumb><a href="esempio-comune.html">Home</a><a href="#">Servizi</a><a>Prenota un appuntamento</a></it-breadcrumb>
+    <h1>Prenota un appuntamento</h1>
+    <p class="lead">Scegli l'ufficio, il giorno e l'orario. Riceverai conferma via email.</p>
+    <it-callout variant="info" title="Serve identità digitale">Per prenotare accedi con SPID o CIE.</it-callout>
+    <h2>Prenotazione</h2>
+    <it-steps>
+      <div data-step="Ufficio">
+        <div class="field"><it-select label="Ufficio"><div data-value="anag">Anagrafe</div><div data-value="trib">Tributi</div><div data-value="scuola">Ufficio scuola</div></it-select></div>
+        <div class="field"><it-select label="Motivo"><div data-value="cert">Certificato</div><div data-value="info">Informazioni</div><div data-value="prat">Pratica in corso</div></it-select></div>
+      </div>
+      <div data-step="Data e ora">
+        <div class="field"><it-datepicker label="Giorno preferito"></it-datepicker></div>
+        <div class="field"><it-select label="Fascia oraria"><div data-value="m">Mattina (9–12)</div><div data-value="p">Pomeriggio (14–17)</div></it-select></div>
+      </div>
+      <div data-step="Conferma">
+        <div class="field"><it-input label="Email per la conferma"></it-input></div>
+        <div class="field"><it-checkbox>Accetto l'informativa sulla privacy</it-checkbox></div>
+        <it-dialog trigger="Conferma prenotazione" title="Confermi la prenotazione?">Riceverai una email di riepilogo. Procedere?</it-dialog>
+      </div>
+    </it-steps>
+    <h2 style="margin-top:2rem">Oppure accedi con identità digitale</h2>
+    <it-button>Accedi con SPID</it-button>
+    ${otherDemos}`,
+});
+writeFileSync(join(DIST, "prenotazione.html"), prenotazione);
+
+// --- Form avanzata (wizard) + datatable complessa ---
+const tipi = ["Mensa", "Trasporto", "Libri di testo", "Affitto", "Bolletta energia"];
+const stati = ["In lavorazione", "Approvata", "Respinta", "Erogata"];
+const bigRows = Array.from({ length: 20 }, (_, i) => [
+  `2026/${1000 + i + 1}`,
+  `${String((i % 27) + 1).padStart(2, "0")}/0${(i % 9) + 1}/2026`,
+  tipi[i % tipi.length],
+  `${((i * 137) % 900) + 100},00 €`,
+  stati[i % stati.length],
+  `${String((i % 27) + 1).padStart(2, "0")}/07/2026`,
+]);
+const domanda = pageShell({
+  title: "Domanda di contributo — Comune di Esempio",
+  prompt: "Crea una domanda di contributo conforme ad AgID come procedura guidata (wizard) in più step con validazione, e sotto una tabella storico ricercabile e ordinabile.",
+  ente: "Regione Esempio", nome: "Comune di Esempio", tagline: "Servizi digitali al cittadino",
+  nav: navbar(COMUNE_NAV, 4), footerNome: "Comune di Esempio",
+  body: `
+    <it-breadcrumb><a href="esempio-comune.html">Home</a><a href="#">Servizi</a><a>Domanda di contributo</a></it-breadcrumb>
+    <h1>Domanda di contributo economico</h1>
+    <p class="lead">Compila la domanda passo dopo passo. I dati vengono salvati a ogni step.</p>
+    <it-callout variant="info" title="Prima di iniziare">Tieni a portata di mano codice fiscale e attestazione ISEE.</it-callout>
+
+    <h2>Compila la domanda</h2>
+    <it-steps>
+      <div data-step="Richiedente">
+        <div class="field"><it-input label="Nome e cognome"></it-input></div>
+        <div class="field"><it-input label="Codice fiscale"></it-input></div>
+        <div class="field"><it-datepicker label="Data di nascita"></it-datepicker></div>
+        <div class="field"><it-select label="Comune di residenza"><div data-value="rm">Roma</div><div data-value="mi">Milano</div><div data-value="na">Napoli</div></it-select></div>
+      </div>
+      <div data-step="Nucleo familiare">
+        <div class="field"><it-number label="Numero di componenti"></it-number></div>
+        <fieldset class="field" style="border:0;padding:0;margin:0"><legend style="font-weight:600;margin-bottom:.25rem">Tipologia di nucleo</legend>
+          <it-radio name="nucleo">Famiglia con figli minori</it-radio>
+          <it-radio name="nucleo">Persona sola</it-radio>
+          <it-radio name="nucleo">Nucleo con persone non autosufficienti</it-radio>
+        </fieldset>
+        <div class="field"><it-switch>Presenza di componenti con disabilità</it-switch></div>
+      </div>
+      <div data-step="Reddito e documenti">
+        <div class="field"><it-input label="Valore ISEE (€)"></it-input></div>
+        <div class="field"><it-select label="Fascia ISEE"><div data-value="1">Fino a 6.000 €</div><div data-value="2">6.000 – 15.000 €</div><div data-value="3">Oltre 15.000 €</div></it-select></div>
+        <div class="field"><it-upload label="Attestazione ISEE"></it-upload></div>
+      </div>
+      <div data-step="Conferma e invio">
+        <div class="field"><it-checkbox>Dichiaro che i dati forniti sono veritieri</it-checkbox></div>
+        <div class="field"><it-checkbox>Accetto l'informativa sulla privacy</it-checkbox></div>
+        <div class="field"><it-rating label="Quanto è stata semplice la procedura?" count="5"></it-rating></div>
+        <it-dialog trigger="Invia la domanda" title="Confermi l'invio?">La domanda sarà protocollata. Vuoi procedere?</it-dialog>
+      </div>
+    </it-steps>
+
+    <h2 style="margin-top:2.5rem">Le tue domande</h2>
+    <p>Storico ricercabile e ordinabile (clicca sulle intestazioni per ordinare).</p>
+    ${trasparenteTable("Storico domande", ["Protocollo", "Data", "Tipo", "Importo", "Stato", "Aggiornamento"], bigRows).replace('page-size="5"', 'page-size="8"')}
+    ${otherDemos}`,
+});
+writeFileSync(join(DIST, "domanda-contributo.html"), domanda);
 
 console.log("✅ Generati da spec/ ->");
 console.log("   - dist/index.html            (GALLERIA componenti, pronta per GitHub Pages)");
