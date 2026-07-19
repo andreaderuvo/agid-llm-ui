@@ -158,12 +158,17 @@ Aggiungere un componente **presentazionale** = **un file spec** (`sota/spec/comp
 
 ## Roadmap
 
-- [x] Coprire il catalogo Bootstrap Italia (49 componenti)
+- [x] Catalogo Bootstrap Italia (~50 componenti)
 - [x] `validate_snippet` (loop di conformità)
-- [ ] Generare adapter Vue / Angular / Svelte dalla spec
-- [ ] `llms.txt` + rules pack (`.cursor/rules`, `AGENTS.md`) + `registry.json` (shadcn)
+- [x] `llms.txt` generato dalla spec
+- [x] Galleria + demo (mini-sito comunale) su GitHub Pages
+- [x] Selettore lingua IT/EN (i18n) e color theming live
+- [x] Demo PWA (installabile / offline)
+- [ ] Componenti mancanti: input-ora, transfer, cookiebar, video-player
+- [ ] Rules pack (`.cursor/rules`, `AGENTS.md`) + `registry.json` (shadcn)
+- [ ] Adapter Vue / Angular / Svelte generati dalla spec
 - [ ] `render_check` (screenshot headless → verifica visiva) nel loop MCP
-- [ ] Pubblicare la galleria su GitHub Pages + catalogo Developers Italia
+- [ ] Submission al catalogo Developers Italia
 
 ## Riferimenti
 
