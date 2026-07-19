@@ -632,6 +632,7 @@ const esempioComune = `<!doctype html>
       <strong>🤖 Esempio LLM-first.</strong>
       <span>Questa pagina è il tipo di risultato ottenibile da un prompt come: <code>${PROMPT_ESEMPIO}</code></span>
       <a href="https://github.com/andreaderuvo/agid-llm-ui" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a>
+      <button type="button" class="prompt-close" aria-label="Chiudi il messaggio" style="margin-left:auto;background:transparent;border:0;color:#fff;font-size:1.4rem;line-height:1;cursor:pointer">×</button>
     </div>
   </div>
 
@@ -725,6 +726,7 @@ const esempioComune = `<!doctype html>
           function setColor(c, h) { r.setProperty('--it-color-primary', c); r.setProperty('--it-color-primary-hover', h || c); r.setProperty('--it-color-info-accent', c); }
           document.querySelectorAll('.color-switcher button[data-c]').forEach(function (b) { b.addEventListener('click', function () { setColor(b.dataset.c, b.dataset.h); }); });
           var inp = document.querySelector('.color-switcher input[type=color]'); if (inp) inp.addEventListener('input', function (e) { setColor(e.target.value); });
+          var pc = document.querySelector('.prompt-close'); if (pc) pc.addEventListener('click', function () { var pb = pc.closest('.prompt-banner'); if (pb) pb.remove(); });
         })();
       </script>
     </div>
@@ -770,6 +772,7 @@ const servizioMensa = `<!doctype html>
     <strong>🤖 Esempio LLM-first.</strong>
     <span>Pagina di servizio con form a step, generabile da: <code>Crea la pagina del servizio "iscrizione alla mensa" conforme ad AgID, con una procedura a step (dati, scuola, documenti), accesso SPID e FAQ.</code></span>
     <a href="https://github.com/andreaderuvo/agid-llm-ui" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a>
+    <button type="button" class="prompt-close" aria-label="Chiudi il messaggio" style="margin-left:auto;background:transparent;border:0;color:#fff;font-size:1.4rem;line-height:1;cursor:pointer">×</button>
   </div></div>
 
   <it-header ente="Regione Esempio" nome="Comune di Esempio" tagline="Servizi digitali al cittadino"></it-header>
@@ -833,6 +836,7 @@ const servizioMensa = `<!doctype html>
   </main>
 
   <div style="margin-top:2rem"><it-footer nome="Comune di Esempio"></it-footer></div>
+  <script>(function(){var pc=document.querySelector('.prompt-close');if(pc)pc.addEventListener('click',function(){var pb=pc.closest('.prompt-banner');if(pb)pb.remove();});})();</script>
   <script defer src="it-components.js"></script>
   <script defer src="it-behavioral.bundle.js"></script>
 </body>
