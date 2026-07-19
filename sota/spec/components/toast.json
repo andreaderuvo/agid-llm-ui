@@ -1,0 +1,35 @@
+{
+  "id": "toast",
+  "tag": "it-toast",
+  "runtime": "zag",
+  "poweredBy": "@zag-js/toast",
+  "intent": "Notifica temporanea (toast) con coda",
+  "props": {
+    "trigger": {
+      "type": "string",
+      "default": "Mostra notifica"
+    },
+    "type": {
+      "type": "enum",
+      "values": [
+        "success",
+        "error",
+        "info",
+        "warning"
+      ],
+      "default": "success"
+    },
+    "title": {
+      "type": "string",
+      "default": "Notifica"
+    }
+  },
+  "slot": "Messaggio della notifica",
+  "a11y": [
+    "Regione live: role=status/alert, aria-atomic",
+    "Coda e timer gestiti dallo store Zag",
+    "Pulsante di chiusura con testo accessibile"
+  ],
+  "example": "<it-toast trigger=\"Invia\" type=\"success\" title=\"Fatto\">Domanda inviata correttamente.</it-toast>",
+  "forbidden": []
+}

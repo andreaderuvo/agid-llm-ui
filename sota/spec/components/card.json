@@ -1,0 +1,20 @@
+{
+  "id": "card",
+  "tag": "it-card",
+  "class": "ItCard",
+  "intent": "Contenitore per un contenuto sintetico",
+  "props": {
+    "title": {
+      "type": "string",
+      "default": "Titolo"
+    }
+  },
+  "slot": "Contenuto della card",
+  "render": "<div class=\"agid-card\"><h3 class=\"agid-card-title\">{{attr title}}</h3><div class=\"agid-card-body\">{{slot}}</div></div>",
+  "style": "it-card .agid-card{border:1px solid var(--it-color-border);border-radius:var(--it-radius-md);padding:var(--it-space-md);background:#fff}\nit-card .agid-card-title{margin:0 0 .5rem;font-size:1.1rem;color:var(--it-color-primary)}",
+  "a11y": [
+    "Il titolo usa un livello di heading coerente con la pagina"
+  ],
+  "forbidden": [],
+  "example": "<it-card title=\"Rette e pagamenti\">Consulta e paga le rette del servizio mensa.</it-card>"
+}

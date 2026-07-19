@@ -1,0 +1,20 @@
+{
+  "id": "megamenu",
+  "tag": "it-megamenu",
+  "runtime": "zag",
+  "poweredBy": "@zag-js/popover",
+  "intent": "Menu esteso su più colonne",
+  "props": {
+    "trigger": {
+      "type": "string",
+      "default": "Argomenti"
+    }
+  },
+  "slot": "Colonne via <div data-col=\"Titolo\"><a>…</a></div>",
+  "a11y": [
+    "Apertura/chiusura, focus ed ESC dal popover Zag",
+    "Colonne di link navigabili da tastiera"
+  ],
+  "example": "<it-megamenu trigger=\"Argomenti\">\n  <div data-col=\"Servizi\"><a href=\"#\">Anagrafe</a><a href=\"#\">Tributi</a></div>\n  <div data-col=\"Vivere\"><a href=\"#\">Scuola</a><a href=\"#\">Trasporti</a></div>\n</it-megamenu>",
+  "forbidden": []
+}

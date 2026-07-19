@@ -1,0 +1,11 @@
+{
+  "id": "section", "tag": "it-section", "class": "ItSection",
+  "intent": "Blocco di pagina con sfondo differenziato",
+  "props": { "title": { "type": "string", "default": "" } },
+  "slot": "Contenuto della sezione",
+  "render": "<section class=\"agid-section\"><h2 class=\"agid-section-title\">{{attr title}}</h2>{{slot}}</section>",
+  "style": "it-section .agid-section{background:var(--it-color-info-bg);padding:var(--it-space-lg);border-radius:var(--it-radius-md)} it-section .agid-section-title{margin-top:0}",
+  "a11y": ["Usa il tag semantico <section> con un'intestazione"],
+  "forbidden": [],
+  "example": "<it-section title=\"In evidenza\">Contenuto della sezione.</it-section>"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "spinner",
+  "tag": "it-spinner",
+  "class": "ItSpinner",
+  "intent": "Indicatore di caricamento",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Caricamento in corso"
+    }
+  },
+  "slot": "",
+  "render": "<span class=\"agid-spinner\"></span><span class=\"visually-hidden\" role=\"status\">{{attr label}}</span>",
+  "style": "it-spinner .agid-spinner{display:inline-block;width:1.5em;height:1.5em;border:3px solid var(--it-color-info-bg);border-top-color:var(--it-color-primary);border-radius:50%;animation:agid-spin .8s linear infinite;vertical-align:middle}\n@keyframes agid-spin{to{transform:rotate(360deg)}}",
+  "a11y": [
+    "role=status con testo visually-hidden che comunica l'attesa"
+  ],
+  "forbidden": [],
+  "example": "<it-spinner label=\"Caricamento dei dati\"></it-spinner>"
+}

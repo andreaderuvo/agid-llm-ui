@@ -1,0 +1,20 @@
+{
+  "id": "dialog",
+  "tag": "it-dialog",
+  "intent": "Finestra di dialogo modale accessibile",
+  "runtime": "zag",
+  "poweredBy": "@zag-js/dialog",
+  "props": {
+    "trigger": { "type": "string", "default": "Apri" },
+    "title":   { "type": "string", "default": "Finestra di dialogo" }
+  },
+  "slot": "Contenuto del dialog",
+  "a11y": [
+    "role=dialog + aria-modal + aria-labelledby verso il titolo (forniti da Zag)",
+    "Focus-trap: il focus resta dentro il dialog mentre è aperto",
+    "Chiusura con ESC e con click sul backdrop",
+    "Alla chiusura il focus torna al trigger"
+  ],
+  "forbidden": ["div-cliccabili", "modale-senza-focus-trap"],
+  "example": "<it-dialog trigger=\"Apri\" title=\"Conferma\">Contenuto del dialog…</it-dialog>"
+}

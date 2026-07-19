@@ -1,0 +1,19 @@
+{
+  "id": "callout",
+  "tag": "it-callout",
+  "class": "ItCallout",
+  "intent": "Riquadro informativo per evidenziare un contenuto",
+  "props": {
+    "variant": { "type": "enum", "values": ["info", "warning", "success"], "default": "info" },
+    "title":   { "type": "string", "default": "Informazione" }
+  },
+  "slot": "Contenuto del callout",
+  "hostAttrs": { "role": "note" },
+  "render": "<div class=\"it-callout-title\"><span class=\"it-callout-ico\" aria-hidden=\"true\"></span>{{attr title}}</div><div class=\"it-callout-body\">{{slot}}</div>",
+  "a11y": [
+    "role=note sul contenitore",
+    "Il tipo (info/attenzione/successo) è veicolato da titolo + icona, non dal solo colore"
+  ],
+  "forbidden": ["colore-unico-veicolo"],
+  "example": "<it-callout variant=\"warning\" title=\"Attenzione\">Controlla i dati.</it-callout>"
+}

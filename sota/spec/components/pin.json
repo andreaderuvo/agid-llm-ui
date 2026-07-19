@@ -1,0 +1,23 @@
+{
+  "id": "pin",
+  "tag": "it-pin",
+  "intent": "Inserimento codice a più cifre (OTP)",
+  "poweredBy": "@zag-js/pin-input",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Codice"
+    },
+    "length": {
+      "type": "string",
+      "default": "4"
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "Focus e auto-avanzamento gestiti da Zag"
+  ],
+  "example": "<it-pin label=\"Codice di verifica\" length=\"4\"></it-pin>",
+  "runtime": "zag",
+  "forbidden": []
+}

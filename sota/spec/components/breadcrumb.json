@@ -1,0 +1,15 @@
+{
+  "id": "breadcrumb",
+  "tag": "it-breadcrumb",
+  "runtime": "custom",
+  "intent": "Percorso di navigazione (breadcrumb)",
+  "props": {},
+  "slot": "Elementi come <a href>…</a>; l'ultimo senza href è la pagina corrente",
+  "a11y": [
+    "<nav aria-label>",
+    "L'elemento corrente usa aria-current=page e non è un link"
+  ],
+  "forbidden": [],
+  "style": "it-breadcrumb .agid-breadcrumb-list{list-style:none;display:flex;flex-wrap:wrap;gap:.25rem;padding:0;margin:0} it-breadcrumb .agid-breadcrumb-item{display:flex;gap:.25rem} it-breadcrumb .agid-sep{color:var(--it-color-muted)} it-breadcrumb a{color:var(--it-color-primary)}",
+  "example": "<it-breadcrumb>\n  <a href=\"/\">Home</a>\n  <a href=\"/servizi\">Servizi</a>\n  <a>Iscrizione mensa</a>\n</it-breadcrumb>"
+}

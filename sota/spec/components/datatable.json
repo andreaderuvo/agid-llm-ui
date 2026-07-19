@@ -1,0 +1,25 @@
+{
+  "id": "datatable",
+  "tag": "it-datatable",
+  "runtime": "custom",
+  "intent": "Tabella dati con ordinamento, ricerca e paginazione",
+  "props": {
+    "page-size": {
+      "type": "string",
+      "default": "10"
+    },
+    "searchable": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "slot": "Una <table> nativa (thead + tbody)",
+  "a11y": [
+    "Intestazioni ordinabili con aria-sort (none/ascending/descending)",
+    "Live region annuncia numero risultati e pagina",
+    "Ricerca con label; paginazione come <nav aria-label>",
+    "Niente macchina Zag: è logica sui dati, non stato UI"
+  ],
+  "forbidden": [],
+  "example": "<it-datatable page-size=\"4\" searchable>\n  <table>\n    <caption>Pagamenti</caption>\n    <thead><tr><th>Data</th><th>Descrizione</th><th>Importo</th></tr></thead>\n    <tbody>\n      <tr><td>01/03/2026</td><td>Mensa marzo</td><td>45,00</td></tr>\n      <tr><td>01/04/2026</td><td>Mensa aprile</td><td>45,00</td></tr>\n      <tr><td>10/04/2026</td><td>Trasporto</td><td>30,00</td></tr>\n      <tr><td>05/05/2026</td><td>Mensa maggio</td><td>48,50</td></tr>\n      <tr><td>12/05/2026</td><td>Materiale</td><td>12,00</td></tr>\n      <tr><td>01/06/2026</td><td>Mensa giugno</td><td>45,00</td></tr>\n      <tr><td>20/06/2026</td><td>Gita</td><td>25,00</td></tr>\n    </tbody>\n  </table>\n</it-datatable>"
+}

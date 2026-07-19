@@ -1,0 +1,19 @@
+{
+  "id": "datepicker",
+  "tag": "it-datepicker",
+  "intent": "Selezione data con calendario",
+  "poweredBy": "@zag-js/date-picker",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Data"
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "Griglia calendario navigabile da tastiera, ARIA e input digitabile da Zag"
+  ],
+  "example": "<it-datepicker label=\"Data di nascita\"></it-datepicker>",
+  "runtime": "zag",
+  "forbidden": []
+}

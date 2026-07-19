@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: cd sota && npm ci       # dipendenze per codegen/bundle (Zag, esbuild…)
+      - run: npm run build          # compila il server MCP
+      - run: node sota/codegen.mjs   # genera componenti, gallery, llms.txt, contratti
+      - run: npm run validate        # lint dati + accessibilità
+      - run: npm run eval            # eval di conformità sui tool MCP

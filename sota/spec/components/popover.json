@@ -1,0 +1,19 @@
+{
+  "id": "popover",
+  "tag": "it-popover",
+  "intent": "Riquadro di approfondimento posizionato accanto a un elemento",
+  "runtime": "zag",
+  "poweredBy": "@zag-js/popover",
+  "props": {
+    "trigger": { "type": "string", "default": "Apri" },
+    "title": { "type": "string", "default": "" }
+  },
+  "slot": "Contenuto del popover",
+  "a11y": [
+    "Posizionamento, gestione del focus, ESC e collegamenti ARIA forniti da Zag",
+    "Attivabile e chiudibile da tastiera",
+    "Il contenuto è annunciato agli screen reader quando compare"
+  ],
+  "forbidden": ["contenuto-non-raggiungibile-da-tastiera"],
+  "example": "<it-popover trigger=\"Maggiori info\" title=\"Dettagli\">Testo di approfondimento.</it-popover>"
+}

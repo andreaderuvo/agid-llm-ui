@@ -1,0 +1,14 @@
+{
+  "id": "timeline",
+  "tag": "it-timeline",
+  "runtime": "custom",
+  "intent": "Cronologia di eventi (linea del tempo)",
+  "props": {},
+  "slot": "Eventi come <div data-date data-title>corpo</div>",
+  "a11y": [
+    "Comprensibile senza la resa grafica; date in formato testuale"
+  ],
+  "forbidden": [],
+  "style": "it-timeline .agid-timeline{position:relative;padding-left:1.5rem} it-timeline .agid-timeline-item{position:relative;padding-bottom:var(--it-space-md);border-left:2px solid var(--it-color-border);padding-left:1rem;margin-left:.3rem} it-timeline .agid-timeline-dot{position:absolute;left:-7px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--it-color-primary)} it-timeline .agid-timeline-date{color:var(--it-color-muted);font-size:.85rem} it-timeline .agid-timeline-title{margin:.1rem 0}",
+  "example": "<it-timeline>\n  <div data-date=\"12 marzo 2026\" data-title=\"Presentazione domanda\">Fase conclusa.</div>\n  <div data-date=\"20 marzo 2026\" data-title=\"Istruttoria\">In corso.</div>\n</it-timeline>"
+}

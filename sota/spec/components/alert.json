@@ -1,0 +1,29 @@
+{
+  "id": "alert",
+  "tag": "it-alert",
+  "class": "ItAlert",
+  "intent": "Messaggio di feedback contestuale",
+  "props": {
+    "variant": {
+      "type": "enum",
+      "values": [
+        "info",
+        "success",
+        "danger",
+        "warning"
+      ],
+      "default": "info"
+    }
+  },
+  "slot": "Testo del messaggio",
+  "render": "<div class=\"agid-alert\" role=\"alert\">{{slot}}</div>",
+  "style": "it-alert .agid-alert{padding:var(--it-space-md);border-radius:var(--it-radius-sm);background:var(--it-color-info-bg);color:var(--it-color-info-accent);border-left:4px solid var(--it-color-info-accent)}\nit-alert[variant=\"success\"] .agid-alert{background:var(--it-color-success-bg);color:var(--it-color-success-accent);border-left-color:var(--it-color-success-accent)}\nit-alert[variant=\"warning\"] .agid-alert{background:var(--it-color-warning-bg);color:var(--it-color-warning-accent);border-left-color:var(--it-color-warning-accent)}\nit-alert[variant=\"danger\"] .agid-alert{background:#fdecea;color:#b3261e;border-left-color:#b3261e}",
+  "a11y": [
+    "role=alert per l'annuncio agli screen reader",
+    "Tipo veicolato da testo, non dal solo colore"
+  ],
+  "forbidden": [
+    "colore-unico-veicolo"
+  ],
+  "example": "<it-alert variant=\"danger\">Si è verificato un errore nei dati inseriti.</it-alert>"
+}

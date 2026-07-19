@@ -1,0 +1,28 @@
+{
+  "id": "badge",
+  "tag": "it-badge",
+  "class": "ItBadge",
+  "intent": "Etichetta breve per stati o marcatori",
+  "props": {
+    "variant": {
+      "type": "enum",
+      "values": [
+        "primary",
+        "success",
+        "warning",
+        "secondary"
+      ],
+      "default": "primary"
+    }
+  },
+  "slot": "Testo del badge",
+  "render": "<span class=\"agid-badge\">{{slot}}</span>",
+  "style": "it-badge .agid-badge{display:inline-block;font-size:.75rem;font-weight:700;padding:.25em .6em;border-radius:999px;background:var(--it-color-primary);color:#fff}\nit-badge[variant=\"success\"] .agid-badge{background:var(--it-color-success-accent)}\nit-badge[variant=\"warning\"] .agid-badge{background:var(--it-color-warning-accent)}\nit-badge[variant=\"secondary\"] .agid-badge{background:var(--it-color-muted)}",
+  "a11y": [
+    "Il significato è nel testo, mai nel solo colore"
+  ],
+  "forbidden": [
+    "colore-unico-veicolo"
+  ],
+  "example": "<it-badge variant=\"success\">Attivo</it-badge>"
+}

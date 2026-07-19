@@ -1,0 +1,29 @@
+{
+  "id": "header",
+  "tag": "it-header",
+  "class": "ItHeader",
+  "intent": "Testata istituzionale dell'ente",
+  "props": {
+    "ente": {
+      "type": "string",
+      "default": "Ente di appartenenza"
+    },
+    "nome": {
+      "type": "string",
+      "default": "Nome dell'Ente"
+    },
+    "tagline": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "Un solo <header> landmark per pagina",
+    "Il nome dell'ente linka alla home"
+  ],
+  "forbidden": [],
+  "render": "<header class=\"agid-header\"><div class=\"agid-header-slim\">{{attr ente}}</div><div class=\"agid-header-main\"><a href=\"/\" class=\"agid-header-brand\"><span class=\"agid-header-name\">{{attr nome}}</span><span class=\"agid-header-tag\">{{attr tagline}}</span></a></div></header>",
+  "style": "it-header .agid-header-slim{background:var(--it-color-primary-hover);color:#fff;padding:.4em 1rem;font-size:.85rem} it-header .agid-header-main{background:var(--it-color-primary);color:#fff;padding:1rem} it-header .agid-header-brand{color:#fff;text-decoration:none;display:block} it-header .agid-header-name{display:block;font-size:1.3rem;font-weight:700} it-header .agid-header-tag{display:block;opacity:.9;font-size:.9rem}",
+  "example": "<it-header ente=\"Comune di Esempio\" nome=\"Comune di Esempio\" tagline=\"Servizi al cittadino\"></it-header>"
+}

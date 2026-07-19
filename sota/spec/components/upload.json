@@ -1,0 +1,19 @@
+{
+  "id": "upload",
+  "tag": "it-upload",
+  "intent": "Caricamento file con dropzone",
+  "poweredBy": "@zag-js/file-upload",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Allegati"
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "Dropzone e input file accessibili da Zag"
+  ],
+  "example": "<it-upload label=\"Allegati\"></it-upload>",
+  "runtime": "zag",
+  "forbidden": []
+}

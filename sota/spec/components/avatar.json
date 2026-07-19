@@ -1,0 +1,20 @@
+{
+  "id": "avatar",
+  "tag": "it-avatar",
+  "class": "ItAvatar",
+  "intent": "Rappresentazione di un utente con iniziali",
+  "props": {
+    "name": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "slot": "Iniziali",
+  "render": "<span class=\"agid-avatar\" aria-hidden=\"true\">{{slot}}</span><span class=\"visually-hidden\">{{attr name}}</span>",
+  "style": ".visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}\nit-avatar .agid-avatar{display:inline-flex;align-items:center;justify-content:center;width:2.5em;height:2.5em;border-radius:50%;background:var(--it-color-primary);color:#fff;font-weight:700}",
+  "a11y": [
+    "Le iniziali sono decorative (aria-hidden); il nome completo è per screen reader"
+  ],
+  "forbidden": [],
+  "example": "<it-avatar name=\"Mario Colombo\">MC</it-avatar>"
+}

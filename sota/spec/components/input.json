@@ -1,0 +1,31 @@
+{
+  "id": "input",
+  "tag": "it-input",
+  "class": "ItInput",
+  "intent": "Campo di testo con etichetta",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Etichetta"
+    },
+    "type": {
+      "type": "string",
+      "default": "text"
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "slot": "",
+  "render": "<label class=\"agid-field\"><span class=\"agid-label\">{{attr label}}</span><input class=\"agid-input\" type=\"{{attr type}}\" placeholder=\"{{attr placeholder}}\"></label>",
+  "style": "it-input .agid-field{display:block;margin:.25rem 0}\n.agid-label{display:block;font-weight:600;margin-bottom:.25rem}\n.agid-input{width:100%;font:inherit;padding:.5em .75em;border:1px solid var(--it-color-border);border-radius:var(--it-radius-sm)}\n.agid-input:focus-visible{outline:3px solid var(--it-color-focus);outline-offset:1px}",
+  "a11y": [
+    "La label avvolge l'input (associazione implicita)",
+    "Il placeholder non sostituisce la label"
+  ],
+  "forbidden": [
+    "placeholder-come-label"
+  ],
+  "example": "<it-input label=\"Nome e cognome\" placeholder=\"Es. Mario Rossi\"></it-input>"
+}

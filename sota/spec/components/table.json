@@ -1,0 +1,16 @@
+{
+  "id": "table",
+  "tag": "it-table",
+  "class": "ItTable",
+  "intent": "Contenitore responsive per una tabella dati",
+  "props": {},
+  "slot": "Una <table> nativa",
+  "a11y": [
+    "Usa <caption>, <th scope>, thead/tbody nativi",
+    "Scroll orizzontale su mobile"
+  ],
+  "forbidden": [],
+  "render": "<div class=\"agid-table-wrap\">{{slot}}</div>",
+  "style": "it-table .agid-table-wrap{overflow-x:auto} it-table table{border-collapse:collapse;width:100%} it-table th,it-table td{text-align:left;padding:.5em .75em;border-bottom:1px solid var(--it-color-border)} it-table caption{caption-side:top;color:var(--it-color-muted);text-align:left;padding-bottom:.5rem}",
+  "example": "<it-table>\n  <table>\n    <caption>Pagamenti effettuati</caption>\n    <thead><tr><th scope=\"col\">Data</th><th scope=\"col\">Importo</th></tr></thead>\n    <tbody><tr><td>01/03/2026</td><td>45,00 €</td></tr></tbody>\n  </table>\n</it-table>"
+}

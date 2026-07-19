@@ -1,0 +1,19 @@
+{
+  "id": "tags",
+  "tag": "it-tags",
+  "intent": "Inserimento di più voci come tag",
+  "poweredBy": "@zag-js/tags-input",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Voci"
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "Gestione tastiera e rimozione tag con ARIA da Zag"
+  ],
+  "example": "<it-tags label=\"Interessi\"></it-tags>",
+  "runtime": "zag",
+  "forbidden": []
+}

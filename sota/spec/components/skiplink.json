@@ -1,0 +1,22 @@
+{
+  "id": "skiplink",
+  "tag": "it-skiplink",
+  "class": "ItSkiplink",
+  "intent": "Link di salto al contenuto (accessibilità)",
+  "props": {
+    "href": {
+      "type": "string",
+      "default": "#main-content"
+    }
+  },
+  "slot": "Vai al contenuto principale",
+  "render": "<a class=\"agid-skiplink\" href=\"{{attr href}}\">{{slot}}</a>",
+  "style": "it-skiplink .agid-skiplink{position:absolute;left:-9999px;background:var(--it-color-primary);color:#fff;padding:.5em 1em;border-radius:var(--it-radius-sm);z-index:1000}\nit-skiplink .agid-skiplink:focus{left:1rem;top:1rem}",
+  "a11y": [
+    "Deve essere il primo elemento focusabile",
+    "Diventa visibile al focus da tastiera",
+    "Punta a un id realmente presente"
+  ],
+  "forbidden": [],
+  "example": "<it-skiplink href=\"#main-content\">Vai al contenuto principale</it-skiplink>"
+}

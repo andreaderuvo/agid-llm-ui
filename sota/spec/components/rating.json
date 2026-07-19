@@ -1,0 +1,24 @@
+{
+  "id": "rating",
+  "tag": "it-rating",
+  "intent": "Valutazione a stelle",
+  "poweredBy": "@zag-js/rating-group",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Valutazione"
+    },
+    "count": {
+      "type": "string",
+      "default": "5"
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "radiogroup accessibile con tastiera e ARIA (Zag)",
+    "Ogni stella ha un valore"
+  ],
+  "example": "<it-rating label=\"Quanto sei soddisfatto?\" count=\"5\"></it-rating>",
+  "runtime": "zag",
+  "forbidden": []
+}

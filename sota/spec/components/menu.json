@@ -1,0 +1,19 @@
+{
+  "id": "menu",
+  "tag": "it-menu",
+  "intent": "Menu a discesa di azioni",
+  "poweredBy": "@zag-js/menu",
+  "props": {
+    "trigger": {
+      "type": "string",
+      "default": "Menu"
+    }
+  },
+  "slot": "Voci via <div data-item=\"Etichetta\"></div>",
+  "a11y": [
+    "role=menu/menuitem, navigazione con frecce, focus e ARIA da Zag"
+  ],
+  "example": "<it-menu trigger=\"Azioni\">\n  <div data-item=\"Modifica\"></div>\n  <div data-item=\"Elimina\"></div>\n</it-menu>",
+  "runtime": "zag",
+  "forbidden": []
+}

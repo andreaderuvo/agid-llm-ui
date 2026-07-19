@@ -1,0 +1,22 @@
+{
+  "id": "textarea",
+  "tag": "it-textarea",
+  "class": "ItTextarea",
+  "intent": "Campo di testo su più righe",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Etichetta"
+    }
+  },
+  "slot": "",
+  "render": "<label class=\"agid-field\"><span class=\"agid-label\">{{attr label}}</span><textarea class=\"agid-input\" rows=\"4\"></textarea></label>",
+  "style": "it-textarea .agid-field{display:block;margin:.25rem 0}",
+  "a11y": [
+    "La label avvolge il campo (associazione implicita)"
+  ],
+  "forbidden": [
+    "placeholder-come-label"
+  ],
+  "example": "<it-textarea label=\"Note aggiuntive\"></it-textarea>"
+}

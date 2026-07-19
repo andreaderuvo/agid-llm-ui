@@ -1,0 +1,20 @@
+{
+  "id": "combobox",
+  "tag": "it-combobox",
+  "intent": "Campo con suggerimenti (combobox)",
+  "poweredBy": "@zag-js/combobox",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Cerca"
+    }
+  },
+  "slot": "Opzioni via <div data-value=\"v\">Etichetta</div>",
+  "a11y": [
+    "Pattern ARIA combobox, navigazione da tastiera (Zag)",
+    "Il filtro lato client è responsabilità del consumer"
+  ],
+  "example": "<it-combobox label=\"Comune\">\n  <div data-value=\"rm\">Roma</div>\n  <div data-value=\"mi\">Milano</div>\n</it-combobox>",
+  "runtime": "zag",
+  "forbidden": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "checkbox",
+  "tag": "it-checkbox",
+  "class": "ItCheckbox",
+  "intent": "Casella di spunta con etichetta",
+  "props": {},
+  "slot": "Testo dell'opzione",
+  "render": "<label class=\"agid-check\"><input type=\"checkbox\">{{slot}}</label>",
+  "style": "it-checkbox .agid-check{display:flex;align-items:center;gap:.5em;cursor:pointer}\nit-checkbox input{width:1.15em;height:1.15em}",
+  "a11y": [
+    "La label avvolge l'input (associazione implicita)"
+  ],
+  "forbidden": [],
+  "example": "<it-checkbox>Ho letto e accetto l'informativa sulla privacy</it-checkbox>"
+}

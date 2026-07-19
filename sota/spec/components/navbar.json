@@ -1,0 +1,15 @@
+{
+  "id": "navbar",
+  "tag": "it-navbar",
+  "runtime": "custom",
+  "intent": "Barra di navigazione principale",
+  "props": {},
+  "slot": "Voci come <a href>…</a>",
+  "a11y": [
+    "<nav aria-label='Navigazione principale'>",
+    "La voce corrente usa aria-current=page"
+  ],
+  "forbidden": [],
+  "style": "it-navbar .agid-navbar{background:var(--it-color-primary)} it-navbar .agid-navbar-list{list-style:none;display:flex;gap:.5rem;padding:0 .5rem;margin:0} it-navbar .agid-navbar-link{display:inline-block;padding:.9em 1em;color:#fff;text-decoration:none;border-bottom:3px solid transparent} it-navbar .agid-navbar-link.is-active{border-bottom-color:#fff;font-weight:700}",
+  "example": "<it-navbar>\n  <a href=\"/\">Home</a>\n  <a href=\"/servizi\">Servizi</a>\n  <a href=\"/amministrazione\">Amministrazione</a>\n</it-navbar>"
+}

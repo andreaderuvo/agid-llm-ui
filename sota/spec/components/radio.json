@@ -1,0 +1,21 @@
+{
+  "id": "radio",
+  "tag": "it-radio",
+  "class": "ItRadio",
+  "intent": "Opzione singola di un gruppo",
+  "props": {
+    "name": {
+      "type": "string",
+      "default": "gruppo"
+    }
+  },
+  "slot": "Testo dell'opzione",
+  "render": "<label class=\"agid-check\"><input type=\"radio\" name=\"{{attr name}}\">{{slot}}</label>",
+  "style": "it-radio .agid-check{display:flex;align-items:center;gap:.5em;cursor:pointer}",
+  "a11y": [
+    "Radio con lo stesso name formano un gruppo",
+    "Avvolgi il gruppo in un fieldset con legend"
+  ],
+  "forbidden": [],
+  "example": "<it-radio name=\"canale\">Email</it-radio>"
+}

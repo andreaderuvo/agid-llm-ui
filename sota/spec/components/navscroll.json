@@ -1,0 +1,20 @@
+{
+  "id": "navscroll",
+  "tag": "it-navscroll",
+  "runtime": "custom",
+  "intent": "Indice a scorrimento con evidenziazione della sezione (scroll-spy)",
+  "props": {
+    "title": {
+      "type": "string",
+      "default": "In questa pagina"
+    }
+  },
+  "slot": "Ancore via <a href=\"#id\">…</a>",
+  "a11y": [
+    "<nav aria-label>",
+    "La sezione visibile riceve aria-current (IntersectionObserver)",
+    "Nota: nessuna macchina Zag per lo scroll-spy"
+  ],
+  "example": "<it-navscroll title=\"In questa pagina\">\n  <a href=\"#sez-1\">Descrizione</a>\n  <a href=\"#sez-2\">Come fare</a>\n</it-navscroll>",
+  "forbidden": []
+}

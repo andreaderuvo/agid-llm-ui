@@ -1,0 +1,18 @@
+{
+  "id": "tooltip",
+  "tag": "it-tooltip",
+  "intent": "Suggerimento contestuale al passaggio del mouse o al focus",
+  "runtime": "zag",
+  "poweredBy": "@zag-js/tooltip",
+  "props": {
+    "content": { "type": "string", "default": "" }
+  },
+  "slot": "Testo dell'elemento che attiva il tooltip",
+  "a11y": [
+    "Mostrato su hover E su focus da tastiera (non solo mouse)",
+    "role=tooltip e collegamenti ARIA forniti da Zag",
+    "Non inserire informazioni essenziali disponibili solo qui"
+  ],
+  "forbidden": ["informazione-essenziale-solo-nel-tooltip"],
+  "example": "<it-tooltip content=\"Informazione aggiuntiva\">Passa qui sopra</it-tooltip>"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "pagination",
+  "tag": "it-pagination",
+  "runtime": "custom",
+  "intent": "Navigazione tra pagine di un elenco",
+  "props": {
+    "total": {
+      "type": "string",
+      "default": "1"
+    },
+    "current": {
+      "type": "string",
+      "default": "1"
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "<nav aria-label>",
+    "La pagina corrente usa aria-current=page"
+  ],
+  "forbidden": [],
+  "style": "it-pagination .agid-pagination-list{list-style:none;display:flex;gap:.25rem;padding:0;margin:0} it-pagination .agid-page-link{display:inline-block;padding:.4em .7em;border-radius:var(--it-radius-sm);color:var(--it-color-primary);text-decoration:none} it-pagination .agid-page-link.is-current{background:var(--it-color-primary);color:#fff}",
+  "example": "<it-pagination total=\"5\" current=\"2\"></it-pagination>"
+}

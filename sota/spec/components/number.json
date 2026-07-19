@@ -1,0 +1,19 @@
+{
+  "id": "number",
+  "tag": "it-number",
+  "intent": "Campo numerico con incremento/decremento",
+  "poweredBy": "@zag-js/number-input",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Valore"
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "Label collegata, spinbutton ARIA, tastiera (frecce) da Zag"
+  ],
+  "example": "<it-number label=\"Quantità\"></it-number>",
+  "runtime": "zag",
+  "forbidden": []
+}

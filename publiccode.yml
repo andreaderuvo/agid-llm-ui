@@ -1,0 +1,53 @@
+# publiccode.yml — standard per l'inserimento nel Catalogo di Developers Italia
+# https://docs.italia.it/italia/developers-italia/publiccodeyml/
+publiccodeYmlVersion: "0.4"
+
+name: agid-llm-ui
+url: "https://github.com/CHANGEME-USER/agid-llm-ui"
+releaseDate: "2026-07-19"
+softwareVersion: "0.1.0"
+developmentStatus: development
+softwareType: standalone/other
+
+platforms:
+  - linux
+  - windows
+  - mac
+
+categories:
+  - digital-asset-management
+
+description:
+  it:
+    localisedName: agid-llm-ui
+    shortDescription: >
+      Server MCP che permette agli editor AI di generare interfacce PA
+      conformi ad AgID con Bootstrap Italia.
+    longDescription: >
+      bootstrap-italia-mcp è un server Model Context Protocol (MCP) che espone
+      agli assistenti AI (Claude, Cursor, GitHub Copilot e altri) la conoscenza
+      del design system Bootstrap Italia: componenti con markup conforme,
+      ricette di pagina per i modelli di sito della Pubblica Amministrazione
+      (Comuni, Scuole, Sanità) e regole di accessibilità WCAG 2.1 AA. In questo
+      modo gli sviluppatori della PA possono generare, direttamente dal proprio
+      editor, interfacce accessibili e conformi alle linee guida di design AgID,
+      invece di markup generico non conforme.
+    features:
+      - Componenti Bootstrap Italia con markup conforme
+      - Ricette di pagina per i modelli di sito PA
+      - Regole di accessibilità WCAG 2.1 AA
+      - Integrazione con editor AI via protocollo MCP
+
+legal:
+  license: EUPL-1.2
+
+maintenance:
+  type: community
+  contacts:
+    - name: CHANGEME
+
+localisation:
+  localisationReady: true
+  availableLanguages:
+    - it
+    - en

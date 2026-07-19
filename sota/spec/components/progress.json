@@ -1,0 +1,24 @@
+{
+  "id": "progress",
+  "tag": "it-progress",
+  "class": "ItProgress",
+  "intent": "Barra di avanzamento",
+  "props": {
+    "value": {
+      "type": "string",
+      "default": "0"
+    },
+    "label": {
+      "type": "string",
+      "default": "Avanzamento"
+    }
+  },
+  "slot": "",
+  "render": "<div class=\"agid-progress\" role=\"progressbar\" aria-valuenow=\"{{attr value}}\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"{{attr label}}\"><span class=\"agid-progress-bar\" style=\"width:{{attr value}}%\"></span></div>",
+  "style": "it-progress .agid-progress{background:var(--it-color-info-bg);border-radius:999px;overflow:hidden;height:.75rem}\nit-progress .agid-progress-bar{display:block;height:100%;background:var(--it-color-primary)}",
+  "a11y": [
+    "role=progressbar con aria-valuenow/min/max e aria-label"
+  ],
+  "forbidden": [],
+  "example": "<it-progress value=\"60\" label=\"Completamento del modulo\"></it-progress>"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "collapsible",
+  "tag": "it-collapsible",
+  "intent": "Contenuto mostra/nascondi",
+  "poweredBy": "@zag-js/collapsible",
+  "props": {
+    "trigger": {
+      "type": "string",
+      "default": "Mostra"
+    }
+  },
+  "slot": "Contenuto collassabile",
+  "a11y": [
+    "Trigger con aria-expanded e aria-controls (Zag)",
+    "Funziona da tastiera"
+  ],
+  "example": "<it-collapsible trigger=\"Mostra dettagli\">Contenuto nascondibile.</it-collapsible>",
+  "runtime": "zag",
+  "forbidden": []
+}

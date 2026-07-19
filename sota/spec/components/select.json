@@ -1,0 +1,19 @@
+{
+  "id": "select",
+  "tag": "it-select",
+  "intent": "Menu di selezione custom accessibile",
+  "poweredBy": "@zag-js/select",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Seleziona"
+    }
+  },
+  "slot": "Opzioni via <div data-value=\"v\">Etichetta</div>",
+  "a11y": [
+    "role=listbox/option, tastiera, typeahead e ARIA da Zag"
+  ],
+  "example": "<it-select label=\"Comune\">\n  <div data-value=\"rm\">Roma</div>\n  <div data-value=\"mi\">Milano</div>\n</it-select>",
+  "runtime": "zag",
+  "forbidden": []
+}

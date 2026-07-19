@@ -1,0 +1,15 @@
+{
+  "id": "switch",
+  "tag": "it-switch",
+  "intent": "Interruttore on/off",
+  "poweredBy": "@zag-js/switch",
+  "props": {},
+  "slot": "Etichetta dell'interruttore",
+  "a11y": [
+    "Stato comunicato da input nativo + ARIA (Zag)",
+    "Etichetta collegata al controllo"
+  ],
+  "example": "<it-switch>Ricevi notifiche via email</it-switch>",
+  "runtime": "zag",
+  "forbidden": []
+}

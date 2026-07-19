@@ -1,0 +1,15 @@
+{
+  "id": "chip",
+  "tag": "it-chip",
+  "class": "ItChip",
+  "intent": "Elemento compatto per un attributo o filtro",
+  "props": {},
+  "slot": "Testo del chip",
+  "render": "<span class=\"agid-chip\">{{slot}}</span>",
+  "style": "it-chip .agid-chip{display:inline-flex;align-items:center;font-size:.9rem;padding:.35em .8em;border-radius:999px;border:1px solid var(--it-color-border);background:#fff;color:var(--it-color-text)}",
+  "a11y": [
+    "Se rimovibile, il pulsante di rimozione ha testo accessibile"
+  ],
+  "forbidden": [],
+  "example": "<it-chip>Filtro attivo</it-chip>"
+}

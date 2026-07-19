@@ -1,0 +1,19 @@
+{
+  "id": "slider",
+  "tag": "it-slider",
+  "intent": "Cursore per selezionare un valore",
+  "poweredBy": "@zag-js/slider",
+  "props": {
+    "label": {
+      "type": "string",
+      "default": "Valore"
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "role=slider con aria-valuenow, tastiera (frecce) da Zag"
+  ],
+  "example": "<it-slider label=\"Volume\"></it-slider>",
+  "runtime": "zag",
+  "forbidden": []
+}

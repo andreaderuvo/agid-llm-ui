@@ -1,0 +1,16 @@
+{
+  "id": "tabs",
+  "tag": "it-tabs",
+  "intent": "Navigazione a schede tra pannelli di contenuto",
+  "runtime": "zag",
+  "poweredBy": "@zag-js/tabs",
+  "props": {},
+  "slot": "Schede definite come <div data-tab=\"Etichetta\">contenuto</div>",
+  "a11y": [
+    "role=tablist / tab / tabpanel e aria-selected forniti da Zag",
+    "Navigazione tra le schede con le frecce (roving tabindex)",
+    "Ogni pannello è collegato alla sua scheda con aria-labelledby"
+  ],
+  "forbidden": ["schede-non-navigabili-da-tastiera"],
+  "example": "<it-tabs>\n  <div data-tab=\"Descrizione\">Cosa offre il servizio.</div>\n  <div data-tab=\"Come fare\">I passaggi per la domanda.</div>\n</it-tabs>"
+}

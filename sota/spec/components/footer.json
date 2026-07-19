@@ -1,0 +1,21 @@
+{
+  "id": "footer",
+  "tag": "it-footer",
+  "class": "ItFooter",
+  "intent": "Piè di pagina istituzionale con link obbligatori",
+  "props": {
+    "nome": {
+      "type": "string",
+      "default": "Nome dell'Ente"
+    }
+  },
+  "slot": "",
+  "a11y": [
+    "Un solo <footer> landmark",
+    "Il link alla Dichiarazione di accessibilità è obbligatorio per legge"
+  ],
+  "forbidden": [],
+  "render": "<footer class=\"agid-footer\"><div class=\"agid-footer-name\">{{attr nome}}</div><ul class=\"agid-footer-links\"><li><a href=\"/amministrazione-trasparente\">Amministrazione trasparente</a></li><li><a href=\"/dichiarazione-di-accessibilita\">Dichiarazione di accessibilità</a></li><li><a href=\"/privacy\">Privacy</a></li><li><a href=\"/note-legali\">Note legali</a></li></ul></footer>",
+  "style": "it-footer .agid-footer{background:var(--it-color-primary-hover);color:#fff;padding:1.5rem 1rem} it-footer .agid-footer-name{font-weight:700;font-size:1.2rem;margin-bottom:1rem} it-footer .agid-footer-links{list-style:none;display:flex;flex-wrap:wrap;gap:1rem;padding:0;margin:0} it-footer .agid-footer-links a{color:#fff}",
+  "example": "<it-footer nome=\"Comune di Esempio\"></it-footer>"
+}

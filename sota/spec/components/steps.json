@@ -1,0 +1,15 @@
+{
+  "id": "steps",
+  "tag": "it-steps",
+  "intent": "Procedura a passi (wizard)",
+  "poweredBy": "@zag-js/steps",
+  "props": {},
+  "slot": "Passi via <div data-step=\"Etichetta\">contenuto</div>",
+  "a11y": [
+    "Stato del passo e collegamenti ARIA gestiti da Zag",
+    "Navigazione Avanti/Indietro"
+  ],
+  "example": "<it-steps>\n  <div data-step=\"Dati\">Passo 1</div>\n  <div data-step=\"Documenti\">Passo 2</div>\n  <div data-step=\"Conferma\">Passo 3</div>\n</it-steps>",
+  "runtime": "zag",
+  "forbidden": []
+}

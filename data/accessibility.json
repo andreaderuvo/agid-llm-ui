@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "reference": "WCAG 2.1 AA — riferimento normativo per la PA italiana (L. 4/2004 'Stanca', Linee guida AgID accessibilità)",
+    "note": "Regole trasversali da rispettare in ogni interfaccia PA. Non sostituiscono un test manuale ma coprono gli errori più frequenti."
+  },
+  "rules": [
+    {
+      "topic": "immagini",
+      "rule": "Ogni <img> informativa ha un attributo alt descrittivo; le immagini decorative hanno alt=\"\" (vuoto) o aria-hidden=\"true\"."
+    },
+    {
+      "topic": "form",
+      "rule": "Ogni campo ha una <label for> collegata. Il placeholder NON sostituisce la label. Gli errori di validazione sono descritti testualmente e collegati via aria-describedby."
+    },
+    {
+      "topic": "colore",
+      "rule": "Il contrasto testo/sfondo è almeno 4.5:1 (3:1 per testo grande). L'informazione non è veicolata dal solo colore (aggiungi testo o icone)."
+    },
+    {
+      "topic": "heading",
+      "rule": "Un solo <h1> per pagina. La gerarchia dei heading è sequenziale e non salta livelli (h1 > h2 > h3)."
+    },
+    {
+      "topic": "landmark",
+      "rule": "La pagina usa i landmark semantici: <header>, <nav> (con aria-label se più d'uno), <main> (uno solo), <footer>. È presente uno skip link al contenuto principale."
+    },
+    {
+      "topic": "focus",
+      "rule": "Tutti gli elementi interattivi sono raggiungibili e usabili da tastiera, con un indicatore di focus visibile. Non usare <div>/<span> cliccabili senza role e gestione da tastiera."
+    },
+    {
+      "topic": "lingua",
+      "rule": "L'attributo lang è impostato sull'elemento <html> (es. lang=\"it\"). Le porzioni in altra lingua hanno il proprio attributo lang."
+    },
+    {
+      "topic": "icone",
+      "rule": "Le icone puramente decorative hanno aria-hidden=\"true\". I controlli con sola icona hanno un aria-label testuale."
+    }
+  ]
+}

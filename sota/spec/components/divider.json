@@ -1,0 +1,11 @@
+{
+  "id": "divider", "tag": "it-divider", "class": "ItDivider",
+  "intent": "Separatore orizzontale tra blocchi di contenuto",
+  "props": {},
+  "slot": "",
+  "render": "<hr class=\"agid-divider\">",
+  "style": "it-divider{display:block;margin:var(--it-space-md) 0} it-divider .agid-divider{border:0;border-top:1px solid var(--it-color-border)}",
+  "a11y": ["<hr> semantico: separazione tematica del contenuto"],
+  "forbidden": [],
+  "example": "<it-divider></it-divider>"
+}

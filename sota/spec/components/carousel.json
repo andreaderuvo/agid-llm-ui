@@ -1,0 +1,14 @@
+{
+  "id": "carousel",
+  "tag": "it-carousel",
+  "intent": "Contenuti scorrevoli (slide)",
+  "poweredBy": "@zag-js/carousel",
+  "props": {},
+  "slot": "Slide via <div data-slide>contenuto</div>",
+  "a11y": [
+    "Controlli e ARIA da Zag; prevedi pausa dell'autoplay"
+  ],
+  "example": "<it-carousel>\n  <div data-slide>Prima slide</div>\n  <div data-slide>Seconda slide</div>\n</it-carousel>",
+  "runtime": "zag",
+  "forbidden": []
+}

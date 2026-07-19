@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "note": "Ricette di pagina: compongono più componenti in un layout conforme ai modelli di sito PA (Comuni, Scuole, Sanità). Sono il livello dove gli sviluppatori si bloccano di più."
+  },
+  "recipes": [
+    {
+      "id": "pagina-servizio-comune",
+      "name": "Pagina di un servizio comunale",
+      "model": "Modello Comuni",
+      "description": "Struttura minima e conforme di una pagina che descrive un servizio erogato da un comune: header istituzionale, breadcrumb, titolo, descrizione, come accedere (con eventuale accesso SPID/CIE) e footer con i link obbligatori.",
+      "usesComponents": ["header", "breadcrumb", "callout", "button", "footer"],
+      "code": "<!-- Skip link per accessibilità -->\n<a class=\"visually-hidden-focusable\" href=\"#main-content\">Vai al contenuto principale</a>\n\n<!-- 1. Header istituzionale (vedi componente 'header') -->\n<header class=\"it-header-wrapper\"><!-- ... --></header>\n\n<main id=\"main-content\">\n  <div class=\"container my-4\">\n    <!-- 2. Breadcrumb -->\n    <nav class=\"breadcrumb-container\" aria-label=\"Percorso di navigazione\">\n      <ol class=\"breadcrumb\">\n        <li class=\"breadcrumb-item\"><a href=\"/\">Home</a><span class=\"separator\">/</span></li>\n        <li class=\"breadcrumb-item\"><a href=\"/servizi\">Servizi</a><span class=\"separator\">/</span></li>\n        <li class=\"breadcrumb-item active\" aria-current=\"page\">Nome del servizio</li>\n      </ol>\n    </nav>\n\n    <!-- 3. Titolo e descrizione -->\n    <h1>Nome del servizio</h1>\n    <p class=\"lead\">Descrizione breve di cosa permette di fare il servizio e a chi è rivolto.</p>\n\n    <!-- 4. Callout informativo -->\n    <div class=\"callout\">\n      <div class=\"callout-title\">\n        <svg class=\"icon\" aria-hidden=\"true\"><use href=\"/bootstrap-italia/dist/svg/sprites.svg#it-info-circle\"></use></svg>\n        A chi è rivolto\n      </div>\n      <p>Indica i destinatari del servizio.</p>\n    </div>\n\n    <!-- 5. Come accedere / azione (es. accesso con identità digitale) -->\n    <h2>Come si fa</h2>\n    <p>Descrivi i passaggi per usufruire del servizio.</p>\n    <a href=\"/accedi\" class=\"btn btn-primary\" role=\"button\">Accedi al servizio</a>\n  </div>\n</main>\n\n<!-- 6. Footer istituzionale con link obbligatori (vedi componente 'footer') -->\n<footer class=\"it-footer\"><!-- ... --></footer>",
+      "accessibilityNotes": "Un solo <h1> per pagina. Landmark obbligatori: header, main (con id per lo skip link), footer. Lo skip link deve essere il primo elemento focusabile. La gerarchia dei heading (h1 > h2 > h3) non deve saltare livelli."
+    }
+  ]
+}

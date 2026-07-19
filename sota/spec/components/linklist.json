@@ -1,0 +1,15 @@
+{
+  "id": "linklist",
+  "tag": "it-linklist",
+  "runtime": "custom",
+  "intent": "Elenco verticale di link",
+  "props": {},
+  "slot": "Link come <a href>…</a>",
+  "a11y": [
+    "La voce corrente usa aria-current",
+    "Se è navigazione, avvolgi in <nav aria-label>"
+  ],
+  "forbidden": [],
+  "style": "it-linklist .agid-linklist{list-style:none;padding:0;margin:0} it-linklist .agid-linklist-item{display:block;padding:.5em .75em;color:var(--it-color-primary);text-decoration:none;border-radius:var(--it-radius-sm)} it-linklist .agid-linklist-item.is-active{background:var(--it-color-info-bg);font-weight:700}",
+  "example": "<it-linklist>\n  <a href=\"#\">Anagrafe</a>\n  <a href=\"#\">Tributi</a>\n  <a href=\"#\">Servizi scolastici</a>\n</it-linklist>"
+}

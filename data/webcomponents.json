@@ -1,0 +1,958 @@
+{
+  "generatedFrom": "sota/spec/",
+  "note": "Componenti AI-first: Web Components universali (funzionano in React, Vue, Angular, HTML puro). L'accessibilità è incapsulata: preferisci SEMPRE questi tag ai markup grezzi quando il progetto può caricarli.",
+  "components": [
+    {
+      "tag": "it-accordion",
+      "intent": "Sezioni di contenuto espandibili (disclosure)",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "multiple": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "a11y": [
+        "Ogni intestazione è un <button> con aria-expanded gestito dal componente",
+        "Il pannello ha role=region e aria-labelledby verso l'header",
+        "Navigazione tra le intestazioni con frecce Su/Giù, Home ed End"
+      ],
+      "forbidden": [
+        "div-cliccabile-header",
+        "pannello-senza-aria"
+      ],
+      "example": "<it-accordion>\n  <div data-header=\"Domanda\">Risposta.</div>\n</it-accordion>"
+    },
+    {
+      "tag": "it-alert",
+      "intent": "Messaggio di feedback contestuale",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "variant": {
+          "type": "enum",
+          "values": [
+            "info",
+            "success",
+            "danger",
+            "warning"
+          ],
+          "default": "info"
+        }
+      },
+      "a11y": [
+        "role=alert per l'annuncio agli screen reader",
+        "Tipo veicolato da testo, non dal solo colore"
+      ],
+      "forbidden": [
+        "colore-unico-veicolo"
+      ],
+      "example": "<it-alert variant=\"danger\">Si è verificato un errore nei dati inseriti.</it-alert>"
+    },
+    {
+      "tag": "it-avatar",
+      "intent": "Rappresentazione di un utente con iniziali",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "name": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "a11y": [
+        "Le iniziali sono decorative (aria-hidden); il nome completo è per screen reader"
+      ],
+      "forbidden": [],
+      "example": "<it-avatar name=\"Mario Colombo\">MC</it-avatar>"
+    },
+    {
+      "tag": "it-badge",
+      "intent": "Etichetta breve per stati o marcatori",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "variant": {
+          "type": "enum",
+          "values": [
+            "primary",
+            "success",
+            "warning",
+            "secondary"
+          ],
+          "default": "primary"
+        }
+      },
+      "a11y": [
+        "Il significato è nel testo, mai nel solo colore"
+      ],
+      "forbidden": [
+        "colore-unico-veicolo"
+      ],
+      "example": "<it-badge variant=\"success\">Attivo</it-badge>"
+    },
+    {
+      "tag": "it-breadcrumb",
+      "intent": "Percorso di navigazione (breadcrumb)",
+      "runtime": "custom",
+      "poweredBy": null,
+      "props": {},
+      "a11y": [
+        "<nav aria-label>",
+        "L'elemento corrente usa aria-current=page e non è un link"
+      ],
+      "forbidden": [],
+      "example": "<it-breadcrumb>\n  <a href=\"/\">Home</a>\n  <a href=\"/servizi\">Servizi</a>\n  <a>Iscrizione mensa</a>\n</it-breadcrumb>"
+    },
+    {
+      "tag": "it-button",
+      "intent": "Bottone per un'azione dell'utente",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "variant": {
+          "type": "enum",
+          "values": [
+            "primary",
+            "secondary",
+            "outline",
+            "success",
+            "danger",
+            "warning"
+          ],
+          "default": "primary"
+        },
+        "size": {
+          "type": "enum",
+          "values": [
+            "sm",
+            "md",
+            "lg"
+          ],
+          "default": "md"
+        },
+        "type": {
+          "type": "enum",
+          "values": [
+            "button",
+            "submit"
+          ],
+          "default": "button"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "a11y": [
+        "Emette sempre un <button> nativo (mai <div> cliccabili)",
+        "Se privo di testo (solo icona) richiede aria-label",
+        "Indicatore di focus sempre visibile"
+      ],
+      "forbidden": [
+        "div-cliccabile",
+        "tailwind",
+        "onclick-inline"
+      ],
+      "example": "<it-button variant=\"outline\">Annulla</it-button>"
+    },
+    {
+      "tag": "it-callout",
+      "intent": "Riquadro informativo per evidenziare un contenuto",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "variant": {
+          "type": "enum",
+          "values": [
+            "info",
+            "warning",
+            "success"
+          ],
+          "default": "info"
+        },
+        "title": {
+          "type": "string",
+          "default": "Informazione"
+        }
+      },
+      "a11y": [
+        "role=note sul contenitore",
+        "Il tipo (info/attenzione/successo) è veicolato da titolo + icona, non dal solo colore"
+      ],
+      "forbidden": [
+        "colore-unico-veicolo"
+      ],
+      "example": "<it-callout variant=\"warning\" title=\"Attenzione\">Controlla i dati.</it-callout>"
+    },
+    {
+      "tag": "it-card",
+      "intent": "Contenitore per un contenuto sintetico",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "title": {
+          "type": "string",
+          "default": "Titolo"
+        }
+      },
+      "a11y": [
+        "Il titolo usa un livello di heading coerente con la pagina"
+      ],
+      "forbidden": [],
+      "example": "<it-card title=\"Rette e pagamenti\">Consulta e paga le rette del servizio mensa.</it-card>"
+    },
+    {
+      "tag": "it-carousel",
+      "intent": "Contenuti scorrevoli (slide)",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/carousel",
+      "props": {},
+      "a11y": [
+        "Controlli e ARIA da Zag; prevedi pausa dell'autoplay"
+      ],
+      "forbidden": [],
+      "example": "<it-carousel>\n  <div data-slide>Prima slide</div>\n  <div data-slide>Seconda slide</div>\n</it-carousel>"
+    },
+    {
+      "tag": "it-checkbox",
+      "intent": "Casella di spunta con etichetta",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {},
+      "a11y": [
+        "La label avvolge l'input (associazione implicita)"
+      ],
+      "forbidden": [],
+      "example": "<it-checkbox>Ho letto e accetto l'informativa sulla privacy</it-checkbox>"
+    },
+    {
+      "tag": "it-chip",
+      "intent": "Elemento compatto per un attributo o filtro",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {},
+      "a11y": [
+        "Se rimovibile, il pulsante di rimozione ha testo accessibile"
+      ],
+      "forbidden": [],
+      "example": "<it-chip>Filtro attivo</it-chip>"
+    },
+    {
+      "tag": "it-collapsible",
+      "intent": "Contenuto mostra/nascondi",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/collapsible",
+      "props": {
+        "trigger": {
+          "type": "string",
+          "default": "Mostra"
+        }
+      },
+      "a11y": [
+        "Trigger con aria-expanded e aria-controls (Zag)",
+        "Funziona da tastiera"
+      ],
+      "forbidden": [],
+      "example": "<it-collapsible trigger=\"Mostra dettagli\">Contenuto nascondibile.</it-collapsible>"
+    },
+    {
+      "tag": "it-combobox",
+      "intent": "Campo con suggerimenti (combobox)",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/combobox",
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Cerca"
+        }
+      },
+      "a11y": [
+        "Pattern ARIA combobox, navigazione da tastiera (Zag)",
+        "Il filtro lato client è responsabilità del consumer"
+      ],
+      "forbidden": [],
+      "example": "<it-combobox label=\"Comune\">\n  <div data-value=\"rm\">Roma</div>\n  <div data-value=\"mi\">Milano</div>\n</it-combobox>"
+    },
+    {
+      "tag": "it-datatable",
+      "intent": "Tabella dati con ordinamento, ricerca e paginazione",
+      "runtime": "custom",
+      "poweredBy": null,
+      "props": {
+        "page-size": {
+          "type": "string",
+          "default": "10"
+        },
+        "searchable": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "a11y": [
+        "Intestazioni ordinabili con aria-sort (none/ascending/descending)",
+        "Live region annuncia numero risultati e pagina",
+        "Ricerca con label; paginazione come <nav aria-label>",
+        "Niente macchina Zag: è logica sui dati, non stato UI"
+      ],
+      "forbidden": [],
+      "example": "<it-datatable page-size=\"4\" searchable>\n  <table>\n    <caption>Pagamenti</caption>\n    <thead><tr><th>Data</th><th>Descrizione</th><th>Importo</th></tr></thead>\n    <tbody>\n      <tr><td>01/03/2026</td><td>Mensa marzo</td><td>45,00</td></tr>\n      <tr><td>01/04/2026</td><td>Mensa aprile</td><td>45,00</td></tr>\n      <tr><td>10/04/2026</td><td>Trasporto</td><td>30,00</td></tr>\n      <tr><td>05/05/2026</td><td>Mensa maggio</td><td>48,50</td></tr>\n      <tr><td>12/05/2026</td><td>Materiale</td><td>12,00</td></tr>\n      <tr><td>01/06/2026</td><td>Mensa giugno</td><td>45,00</td></tr>\n      <tr><td>20/06/2026</td><td>Gita</td><td>25,00</td></tr>\n    </tbody>\n  </table>\n</it-datatable>"
+    },
+    {
+      "tag": "it-datepicker",
+      "intent": "Selezione data con calendario",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/date-picker",
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Data"
+        }
+      },
+      "a11y": [
+        "Griglia calendario navigabile da tastiera, ARIA e input digitabile da Zag"
+      ],
+      "forbidden": [],
+      "example": "<it-datepicker label=\"Data di nascita\"></it-datepicker>"
+    },
+    {
+      "tag": "it-dialog",
+      "intent": "Finestra di dialogo modale accessibile",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/dialog",
+      "props": {
+        "trigger": {
+          "type": "string",
+          "default": "Apri"
+        },
+        "title": {
+          "type": "string",
+          "default": "Finestra di dialogo"
+        }
+      },
+      "a11y": [
+        "role=dialog + aria-modal + aria-labelledby verso il titolo (forniti da Zag)",
+        "Focus-trap: il focus resta dentro il dialog mentre è aperto",
+        "Chiusura con ESC e con click sul backdrop",
+        "Alla chiusura il focus torna al trigger"
+      ],
+      "forbidden": [
+        "div-cliccabili",
+        "modale-senza-focus-trap"
+      ],
+      "example": "<it-dialog trigger=\"Apri\" title=\"Conferma\">Contenuto del dialog…</it-dialog>"
+    },
+    {
+      "tag": "it-divider",
+      "intent": "Separatore orizzontale tra blocchi di contenuto",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {},
+      "a11y": [
+        "<hr> semantico: separazione tematica del contenuto"
+      ],
+      "forbidden": [],
+      "example": "<it-divider></it-divider>"
+    },
+    {
+      "tag": "it-footer",
+      "intent": "Piè di pagina istituzionale con link obbligatori",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "nome": {
+          "type": "string",
+          "default": "Nome dell'Ente"
+        }
+      },
+      "a11y": [
+        "Un solo <footer> landmark",
+        "Il link alla Dichiarazione di accessibilità è obbligatorio per legge"
+      ],
+      "forbidden": [],
+      "example": "<it-footer nome=\"Comune di Esempio\"></it-footer>"
+    },
+    {
+      "tag": "it-header",
+      "intent": "Testata istituzionale dell'ente",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "ente": {
+          "type": "string",
+          "default": "Ente di appartenenza"
+        },
+        "nome": {
+          "type": "string",
+          "default": "Nome dell'Ente"
+        },
+        "tagline": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "a11y": [
+        "Un solo <header> landmark per pagina",
+        "Il nome dell'ente linka alla home"
+      ],
+      "forbidden": [],
+      "example": "<it-header ente=\"Comune di Esempio\" nome=\"Comune di Esempio\" tagline=\"Servizi al cittadino\"></it-header>"
+    },
+    {
+      "tag": "it-hero",
+      "intent": "Blocco di apertura ad alto impatto (testata di pagina)",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "title": {
+          "type": "string",
+          "default": "Titolo"
+        },
+        "category": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "a11y": [
+        "Se contiene il titolo di pagina deve essere l'unico <h1>",
+        "Verifica il contrasto del testo sullo sfondo"
+      ],
+      "forbidden": [],
+      "example": "<it-hero title=\"Servizi al cittadino\">Trova e accedi ai servizi del Comune.</it-hero>"
+    },
+    {
+      "tag": "it-input",
+      "intent": "Campo di testo con etichetta",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Etichetta"
+        },
+        "type": {
+          "type": "string",
+          "default": "text"
+        },
+        "placeholder": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "a11y": [
+        "La label avvolge l'input (associazione implicita)",
+        "Il placeholder non sostituisce la label"
+      ],
+      "forbidden": [
+        "placeholder-come-label"
+      ],
+      "example": "<it-input label=\"Nome e cognome\" placeholder=\"Es. Mario Rossi\"></it-input>"
+    },
+    {
+      "tag": "it-linklist",
+      "intent": "Elenco verticale di link",
+      "runtime": "custom",
+      "poweredBy": null,
+      "props": {},
+      "a11y": [
+        "La voce corrente usa aria-current",
+        "Se è navigazione, avvolgi in <nav aria-label>"
+      ],
+      "forbidden": [],
+      "example": "<it-linklist>\n  <a href=\"#\">Anagrafe</a>\n  <a href=\"#\">Tributi</a>\n  <a href=\"#\">Servizi scolastici</a>\n</it-linklist>"
+    },
+    {
+      "tag": "it-megamenu",
+      "intent": "Menu esteso su più colonne",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/popover",
+      "props": {
+        "trigger": {
+          "type": "string",
+          "default": "Argomenti"
+        }
+      },
+      "a11y": [
+        "Apertura/chiusura, focus ed ESC dal popover Zag",
+        "Colonne di link navigabili da tastiera"
+      ],
+      "forbidden": [],
+      "example": "<it-megamenu trigger=\"Argomenti\">\n  <div data-col=\"Servizi\"><a href=\"#\">Anagrafe</a><a href=\"#\">Tributi</a></div>\n  <div data-col=\"Vivere\"><a href=\"#\">Scuola</a><a href=\"#\">Trasporti</a></div>\n</it-megamenu>"
+    },
+    {
+      "tag": "it-menu",
+      "intent": "Menu a discesa di azioni",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/menu",
+      "props": {
+        "trigger": {
+          "type": "string",
+          "default": "Menu"
+        }
+      },
+      "a11y": [
+        "role=menu/menuitem, navigazione con frecce, focus e ARIA da Zag"
+      ],
+      "forbidden": [],
+      "example": "<it-menu trigger=\"Azioni\">\n  <div data-item=\"Modifica\"></div>\n  <div data-item=\"Elimina\"></div>\n</it-menu>"
+    },
+    {
+      "tag": "it-navbar",
+      "intent": "Barra di navigazione principale",
+      "runtime": "custom",
+      "poweredBy": null,
+      "props": {},
+      "a11y": [
+        "<nav aria-label='Navigazione principale'>",
+        "La voce corrente usa aria-current=page"
+      ],
+      "forbidden": [],
+      "example": "<it-navbar>\n  <a href=\"/\">Home</a>\n  <a href=\"/servizi\">Servizi</a>\n  <a href=\"/amministrazione\">Amministrazione</a>\n</it-navbar>"
+    },
+    {
+      "tag": "it-navscroll",
+      "intent": "Indice a scorrimento con evidenziazione della sezione (scroll-spy)",
+      "runtime": "custom",
+      "poweredBy": null,
+      "props": {
+        "title": {
+          "type": "string",
+          "default": "In questa pagina"
+        }
+      },
+      "a11y": [
+        "<nav aria-label>",
+        "La sezione visibile riceve aria-current (IntersectionObserver)",
+        "Nota: nessuna macchina Zag per lo scroll-spy"
+      ],
+      "forbidden": [],
+      "example": "<it-navscroll title=\"In questa pagina\">\n  <a href=\"#sez-1\">Descrizione</a>\n  <a href=\"#sez-2\">Come fare</a>\n</it-navscroll>"
+    },
+    {
+      "tag": "it-number",
+      "intent": "Campo numerico con incremento/decremento",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/number-input",
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Valore"
+        }
+      },
+      "a11y": [
+        "Label collegata, spinbutton ARIA, tastiera (frecce) da Zag"
+      ],
+      "forbidden": [],
+      "example": "<it-number label=\"Quantità\"></it-number>"
+    },
+    {
+      "tag": "it-pagination",
+      "intent": "Navigazione tra pagine di un elenco",
+      "runtime": "custom",
+      "poweredBy": null,
+      "props": {
+        "total": {
+          "type": "string",
+          "default": "1"
+        },
+        "current": {
+          "type": "string",
+          "default": "1"
+        }
+      },
+      "a11y": [
+        "<nav aria-label>",
+        "La pagina corrente usa aria-current=page"
+      ],
+      "forbidden": [],
+      "example": "<it-pagination total=\"5\" current=\"2\"></it-pagination>"
+    },
+    {
+      "tag": "it-pin",
+      "intent": "Inserimento codice a più cifre (OTP)",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/pin-input",
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Codice"
+        },
+        "length": {
+          "type": "string",
+          "default": "4"
+        }
+      },
+      "a11y": [
+        "Focus e auto-avanzamento gestiti da Zag"
+      ],
+      "forbidden": [],
+      "example": "<it-pin label=\"Codice di verifica\" length=\"4\"></it-pin>"
+    },
+    {
+      "tag": "it-popover",
+      "intent": "Riquadro di approfondimento posizionato accanto a un elemento",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/popover",
+      "props": {
+        "trigger": {
+          "type": "string",
+          "default": "Apri"
+        },
+        "title": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "a11y": [
+        "Posizionamento, gestione del focus, ESC e collegamenti ARIA forniti da Zag",
+        "Attivabile e chiudibile da tastiera",
+        "Il contenuto è annunciato agli screen reader quando compare"
+      ],
+      "forbidden": [
+        "contenuto-non-raggiungibile-da-tastiera"
+      ],
+      "example": "<it-popover trigger=\"Maggiori info\" title=\"Dettagli\">Testo di approfondimento.</it-popover>"
+    },
+    {
+      "tag": "it-progress",
+      "intent": "Barra di avanzamento",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "value": {
+          "type": "string",
+          "default": "0"
+        },
+        "label": {
+          "type": "string",
+          "default": "Avanzamento"
+        }
+      },
+      "a11y": [
+        "role=progressbar con aria-valuenow/min/max e aria-label"
+      ],
+      "forbidden": [],
+      "example": "<it-progress value=\"60\" label=\"Completamento del modulo\"></it-progress>"
+    },
+    {
+      "tag": "it-radio",
+      "intent": "Opzione singola di un gruppo",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "name": {
+          "type": "string",
+          "default": "gruppo"
+        }
+      },
+      "a11y": [
+        "Radio con lo stesso name formano un gruppo",
+        "Avvolgi il gruppo in un fieldset con legend"
+      ],
+      "forbidden": [],
+      "example": "<it-radio name=\"canale\">Email</it-radio>"
+    },
+    {
+      "tag": "it-rating",
+      "intent": "Valutazione a stelle",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/rating-group",
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Valutazione"
+        },
+        "count": {
+          "type": "string",
+          "default": "5"
+        }
+      },
+      "a11y": [
+        "radiogroup accessibile con tastiera e ARIA (Zag)",
+        "Ogni stella ha un valore"
+      ],
+      "forbidden": [],
+      "example": "<it-rating label=\"Quanto sei soddisfatto?\" count=\"5\"></it-rating>"
+    },
+    {
+      "tag": "it-section",
+      "intent": "Blocco di pagina con sfondo differenziato",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "title": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "a11y": [
+        "Usa il tag semantico <section> con un'intestazione"
+      ],
+      "forbidden": [],
+      "example": "<it-section title=\"In evidenza\">Contenuto della sezione.</it-section>"
+    },
+    {
+      "tag": "it-select",
+      "intent": "Menu di selezione custom accessibile",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/select",
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Seleziona"
+        }
+      },
+      "a11y": [
+        "role=listbox/option, tastiera, typeahead e ARIA da Zag"
+      ],
+      "forbidden": [],
+      "example": "<it-select label=\"Comune\">\n  <div data-value=\"rm\">Roma</div>\n  <div data-value=\"mi\">Milano</div>\n</it-select>"
+    },
+    {
+      "tag": "it-sidebar",
+      "intent": "Menu laterale di sezione",
+      "runtime": "custom",
+      "poweredBy": null,
+      "props": {
+        "title": {
+          "type": "string",
+          "default": "In questa sezione"
+        }
+      },
+      "a11y": [
+        "<nav aria-label>",
+        "La voce corrente usa aria-current"
+      ],
+      "forbidden": [],
+      "example": "<it-sidebar title=\"In questa sezione\">\n  <a href=\"#\">Panoramica</a>\n  <a href=\"#\">Come fare</a>\n  <a href=\"#\">Contatti</a>\n</it-sidebar>"
+    },
+    {
+      "tag": "it-skiplink",
+      "intent": "Link di salto al contenuto (accessibilità)",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "href": {
+          "type": "string",
+          "default": "#main-content"
+        }
+      },
+      "a11y": [
+        "Deve essere il primo elemento focusabile",
+        "Diventa visibile al focus da tastiera",
+        "Punta a un id realmente presente"
+      ],
+      "forbidden": [],
+      "example": "<it-skiplink href=\"#main-content\">Vai al contenuto principale</it-skiplink>"
+    },
+    {
+      "tag": "it-slider",
+      "intent": "Cursore per selezionare un valore",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/slider",
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Valore"
+        }
+      },
+      "a11y": [
+        "role=slider con aria-valuenow, tastiera (frecce) da Zag"
+      ],
+      "forbidden": [],
+      "example": "<it-slider label=\"Volume\"></it-slider>"
+    },
+    {
+      "tag": "it-spinner",
+      "intent": "Indicatore di caricamento",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Caricamento in corso"
+        }
+      },
+      "a11y": [
+        "role=status con testo visually-hidden che comunica l'attesa"
+      ],
+      "forbidden": [],
+      "example": "<it-spinner label=\"Caricamento dei dati\"></it-spinner>"
+    },
+    {
+      "tag": "it-steps",
+      "intent": "Procedura a passi (wizard)",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/steps",
+      "props": {},
+      "a11y": [
+        "Stato del passo e collegamenti ARIA gestiti da Zag",
+        "Navigazione Avanti/Indietro"
+      ],
+      "forbidden": [],
+      "example": "<it-steps>\n  <div data-step=\"Dati\">Passo 1</div>\n  <div data-step=\"Documenti\">Passo 2</div>\n  <div data-step=\"Conferma\">Passo 3</div>\n</it-steps>"
+    },
+    {
+      "tag": "it-switch",
+      "intent": "Interruttore on/off",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/switch",
+      "props": {},
+      "a11y": [
+        "Stato comunicato da input nativo + ARIA (Zag)",
+        "Etichetta collegata al controllo"
+      ],
+      "forbidden": [],
+      "example": "<it-switch>Ricevi notifiche via email</it-switch>"
+    },
+    {
+      "tag": "it-table",
+      "intent": "Contenitore responsive per una tabella dati",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {},
+      "a11y": [
+        "Usa <caption>, <th scope>, thead/tbody nativi",
+        "Scroll orizzontale su mobile"
+      ],
+      "forbidden": [],
+      "example": "<it-table>\n  <table>\n    <caption>Pagamenti effettuati</caption>\n    <thead><tr><th scope=\"col\">Data</th><th scope=\"col\">Importo</th></tr></thead>\n    <tbody><tr><td>01/03/2026</td><td>45,00 €</td></tr></tbody>\n  </table>\n</it-table>"
+    },
+    {
+      "tag": "it-tabs",
+      "intent": "Navigazione a schede tra pannelli di contenuto",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/tabs",
+      "props": {},
+      "a11y": [
+        "role=tablist / tab / tabpanel e aria-selected forniti da Zag",
+        "Navigazione tra le schede con le frecce (roving tabindex)",
+        "Ogni pannello è collegato alla sua scheda con aria-labelledby"
+      ],
+      "forbidden": [
+        "schede-non-navigabili-da-tastiera"
+      ],
+      "example": "<it-tabs>\n  <div data-tab=\"Descrizione\">Cosa offre il servizio.</div>\n  <div data-tab=\"Come fare\">I passaggi per la domanda.</div>\n</it-tabs>"
+    },
+    {
+      "tag": "it-tags",
+      "intent": "Inserimento di più voci come tag",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/tags-input",
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Voci"
+        }
+      },
+      "a11y": [
+        "Gestione tastiera e rimozione tag con ARIA da Zag"
+      ],
+      "forbidden": [],
+      "example": "<it-tags label=\"Interessi\"></it-tags>"
+    },
+    {
+      "tag": "it-textarea",
+      "intent": "Campo di testo su più righe",
+      "runtime": "generated",
+      "poweredBy": null,
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Etichetta"
+        }
+      },
+      "a11y": [
+        "La label avvolge il campo (associazione implicita)"
+      ],
+      "forbidden": [
+        "placeholder-come-label"
+      ],
+      "example": "<it-textarea label=\"Note aggiuntive\"></it-textarea>"
+    },
+    {
+      "tag": "it-timeline",
+      "intent": "Cronologia di eventi (linea del tempo)",
+      "runtime": "custom",
+      "poweredBy": null,
+      "props": {},
+      "a11y": [
+        "Comprensibile senza la resa grafica; date in formato testuale"
+      ],
+      "forbidden": [],
+      "example": "<it-timeline>\n  <div data-date=\"12 marzo 2026\" data-title=\"Presentazione domanda\">Fase conclusa.</div>\n  <div data-date=\"20 marzo 2026\" data-title=\"Istruttoria\">In corso.</div>\n</it-timeline>"
+    },
+    {
+      "tag": "it-toast",
+      "intent": "Notifica temporanea (toast) con coda",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/toast",
+      "props": {
+        "trigger": {
+          "type": "string",
+          "default": "Mostra notifica"
+        },
+        "type": {
+          "type": "enum",
+          "values": [
+            "success",
+            "error",
+            "info",
+            "warning"
+          ],
+          "default": "success"
+        },
+        "title": {
+          "type": "string",
+          "default": "Notifica"
+        }
+      },
+      "a11y": [
+        "Regione live: role=status/alert, aria-atomic",
+        "Coda e timer gestiti dallo store Zag",
+        "Pulsante di chiusura con testo accessibile"
+      ],
+      "forbidden": [],
+      "example": "<it-toast trigger=\"Invia\" type=\"success\" title=\"Fatto\">Domanda inviata correttamente.</it-toast>"
+    },
+    {
+      "tag": "it-tooltip",
+      "intent": "Suggerimento contestuale al passaggio del mouse o al focus",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/tooltip",
+      "props": {
+        "content": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "a11y": [
+        "Mostrato su hover E su focus da tastiera (non solo mouse)",
+        "role=tooltip e collegamenti ARIA forniti da Zag",
+        "Non inserire informazioni essenziali disponibili solo qui"
+      ],
+      "forbidden": [
+        "informazione-essenziale-solo-nel-tooltip"
+      ],
+      "example": "<it-tooltip content=\"Informazione aggiuntiva\">Passa qui sopra</it-tooltip>"
+    },
+    {
+      "tag": "it-upload",
+      "intent": "Caricamento file con dropzone",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/file-upload",
+      "props": {
+        "label": {
+          "type": "string",
+          "default": "Allegati"
+        }
+      },
+      "a11y": [
+        "Dropzone e input file accessibili da Zag"
+      ],
+      "forbidden": [],
+      "example": "<it-upload label=\"Allegati\"></it-upload>"
+    }
+  ]
+}

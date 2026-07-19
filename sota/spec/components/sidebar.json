@@ -1,0 +1,20 @@
+{
+  "id": "sidebar",
+  "tag": "it-sidebar",
+  "runtime": "custom",
+  "intent": "Menu laterale di sezione",
+  "props": {
+    "title": {
+      "type": "string",
+      "default": "In questa sezione"
+    }
+  },
+  "slot": "Link come <a href>…</a>",
+  "a11y": [
+    "<nav aria-label>",
+    "La voce corrente usa aria-current"
+  ],
+  "forbidden": [],
+  "style": "it-sidebar .agid-sidebar{border-left:2px solid var(--it-color-border);padding-left:1rem} it-sidebar .agid-sidebar-title{font-weight:700;color:var(--it-color-muted);margin-bottom:.5rem}",
+  "example": "<it-sidebar title=\"In questa sezione\">\n  <a href=\"#\">Panoramica</a>\n  <a href=\"#\">Come fare</a>\n  <a href=\"#\">Contatti</a>\n</it-sidebar>"
+}

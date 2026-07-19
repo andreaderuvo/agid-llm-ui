@@ -1,0 +1,48 @@
+{
+  "name": "agid-llm-ui",
+  "version": "0.1.0",
+  "description": "LLM-first design system for the Italian public sector (AgID/Bootstrap Italia): a single machine-readable spec generates universal web components, an MCP server, llms.txt and validation so AI assistants produce compliant, accessible UIs / Design system LLM-first per la PA italiana",
+  "type": "module",
+  "bin": {
+    "agid-llm-ui": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "data"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "validate": "node scripts/validate.mjs",
+    "eval": "node scripts/eval.mjs",
+    "demo": "node scripts/build-demo.mjs",
+    "test": "npm run validate && npm run eval",
+    "inspect": "npx @modelcontextprotocol/inspector tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "bootstrap-italia",
+    "agid",
+    "designers-italia",
+    "pubblica-amministrazione",
+    "accessibility",
+    "civic-tech",
+    "italia"
+  ],
+  "license": "EUPL-1.2",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  }
+}

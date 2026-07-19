@@ -1,0 +1,18 @@
+{
+  "id": "accordion",
+  "tag": "it-accordion",
+  "class": "ItAccordion",
+  "intent": "Sezioni di contenuto espandibili (disclosure)",
+  "behavior": "disclosure",
+  "props": {
+    "multiple": { "type": "boolean", "default": false }
+  },
+  "childSelector": "[data-header]",
+  "a11y": [
+    "Ogni intestazione è un <button> con aria-expanded gestito dal componente",
+    "Il pannello ha role=region e aria-labelledby verso l'header",
+    "Navigazione tra le intestazioni con frecce Su/Giù, Home ed End"
+  ],
+  "forbidden": ["div-cliccabile-header", "pannello-senza-aria"],
+  "example": "<it-accordion>\n  <div data-header=\"Domanda\">Risposta.</div>\n</it-accordion>"
+}
