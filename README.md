@@ -1,8 +1,8 @@
 # agid-llm-ui — un design system **LLM-first** per la PA italiana
 
-> **LLM-first**: un esperimento per aiutare gli **assistenti AI** (Claude, Cursor, Copilot…) a generare interfacce della PA più vicine alle linee guida AgID, cercando di tenere conto dell'accessibilità. I componenti e i materiali per gli LLM sono generati da **un'unica fonte machine-readable**.
+> **LLM-first**: un esperimento per aiutare gli **assistenti AI** (Claude, Cursor, Copilot…) a generare interfacce della PA più vicine alle [linee guida di design AgID](https://docs.italia.it/italia/designers-italia/design-linee-guida-docs/it/stabile/), cercando di tenere conto dell'accessibilità. I componenti e i materiali per gli LLM sono generati da **un'unica fonte machine-readable**.
 
-> **LLM-first** — an experiment to help **AI assistants** generate Italian-PA UIs closer to the AgID guidelines. Components and LLM-facing materials are generated from a single machine-readable spec.
+> **LLM-first** — an experiment to help **AI assistants** generate Italian-PA UIs closer to the [AgID design guidelines](https://docs.italia.it/italia/designers-italia/design-linee-guida-docs/it/stabile/). Components and LLM-facing materials are generated from a single machine-readable spec.
 
 [![License: EUPL 1.2](https://img.shields.io/badge/license-EUPL--1.2-blue)](LICENSE)
 ![status](https://img.shields.io/badge/status-sperimentale-orange)
@@ -31,6 +31,43 @@ Note più estese: **[VISION.md](VISION.md)**.
 > ⚠️ **Progetto community, non ufficiale.** Non affiliato né approvato da AgID o Designers Italia. Costruito sopra Bootstrap Italia (licenza BSD-3-Clause) nel rispetto della relativa attribuzione. "AgID" è usato solo in senso descrittivo; il prefisso `it-` è provvisorio.
 
 > 🤖 Realizzato in gran parte in **vibe coding**, insieme a un assistente AI — coerente con lo spirito LLM-first del progetto. Da leggere e verificare con spirito critico, non come codice "pronto per la produzione".
+
+## Per chi sviluppa — cosa devi fare, in pratica
+
+Scegli lo scenario che ti riguarda.
+
+### A) Voglio che l'AI mi generi UI conformi (Cursor, Claude, VS Code…)
+1. Builda una volta:
+   ```bash
+   git clone https://github.com/andreaderuvo/agid-llm-ui.git
+   cd agid-llm-ui && npm install && npm run build
+   ```
+2. Collega il server MCP al tuo editor → vedi **[Usare il server MCP](#usare-il-server-mcp)**.
+3. Chiedi in italiano, es. *«pagina di un servizio comunale conforme ad AgID con un form e una tabella»*. L'assistente usa i tool e genera markup conforme, preferendo i tag `<it-…>`.
+
+### B) Voglio solo i componenti nel mio sito/app (anche senza AI)
+I componenti sono **Web Components**: HTML puro, funzionano in React, Vue, Angular o HTML.
+```bash
+npm install && npm run build && node sota/codegen.mjs
+# poi prendi da sota/dist/ : it-tokens.css, it-components.js, it-behavioral.bundle.js
+```
+Nella tua pagina:
+```html
+<link rel="stylesheet" href="it-tokens.css">
+<script defer src="it-components.js"></script>
+<script defer src="it-behavioral.bundle.js"></script>
+
+<it-button variant="success">Invia</it-button>
+<it-dialog trigger="Apri" title="Conferma">Vuoi procedere?</it-dialog>
+<it-datatable page-size="10" searchable> …una &lt;table&gt; nativa… </it-datatable>
+```
+> ℹ️ Pubblicazione su **npm/CDN**: prevista, non ancora fatta. Per ora si builda in locale e si prendono i file da `sota/dist/`.
+
+### C) Uso OpenAI o un altro strumento
+- Se parla MCP (OpenAI **Agents SDK** / **Responses API**, **VS Code Copilot**…): fai come in **A**.
+- Altrimenti: usa i componenti come in **B** e passa `sota/dist/llms.txt` come contesto all'LLM.
+
+> Non sai da dove partire? Apri la **galleria** `sota/dist/index.html`: per ogni componente trovi anteprima dal vivo, props e codice da copiare.
 
 ## Cosa contiene
 
