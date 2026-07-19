@@ -16,19 +16,21 @@
 
 ## Da dove nasce
 
-Lavorando con **Bootstrap Italia** (il design system ufficiale della PA) abbiamo notato alcune cose, dette senza pretese:
+Il punto di partenza sono alcune caratteristiche di **Bootstrap Italia** (il design system ufficiale della PA), osservate senza pretese:
 
 - il design e l'accessibilità sono ottimi, ma il markup è verboso e molte regole stanno nella documentazione, non nei componenti;
 - i vari kit di framework (React, Angular, web components) sono mantenuti a mano, senza un'unica fonte machine-readable, quindi tendono a rincorrere;
 - gli assistenti AI non conoscono Bootstrap Italia e spesso generano markup generico e non conforme.
 
-Questo è un **esperimento** per provare un approccio diverso: descrivere i componenti in una **spec machine-readable** e generare da lì gli artefatti — inclusi quelli che aiutano un LLM a produrre UI più conformi. Non pretende di essere completo né una soluzione definitiva: è un punto di partenza aperto ai contributi.
+Questo progetto è un **esperimento** per provare un approccio diverso: descrivere i componenti in una **spec machine-readable** e generare da lì gli artefatti — inclusi quelli che aiutano un LLM a produrre UI più conformi. Non pretende di essere completo né una soluzione definitiva: è un punto di partenza aperto ai contributi.
 
 Come funziona, in breve: da `sota/spec/` un piccolo codegen produce i **Web Components** (con l'accessibilità e il comportamento — focus, tastiera, stato — gestiti da macchine a stati **[Zag.js](https://zagjs.dev)**), i wrapper tipizzati, il CSS dai token, la documentazione, i contratti di validazione, la galleria e i dati per il **server [MCP](https://modelcontextprotocol.io)**. Cambiando la spec, gli artefatti si riallineano.
 
 Note più estese: **[VISION.md](VISION.md)**.
 
 > ⚠️ **Progetto community, non ufficiale.** Non affiliato né approvato da AgID o Designers Italia. Costruito sopra Bootstrap Italia (licenza BSD-3-Clause) nel rispetto della relativa attribuzione. "AgID" è usato solo in senso descrittivo; il prefisso `it-` è provvisorio.
+
+> 🤖 Realizzato in gran parte in **vibe coding**, insieme a un assistente AI — coerente con lo spirito LLM-first del progetto. Da leggere e verificare con spirito critico, non come codice "pronto per la produzione".
 
 ## Cosa contiene
 
@@ -57,23 +59,45 @@ sota/spec/  (design token DTCG + manifest dei componenti = fonte unica)
    └─ dati per il server MCP
 ```
 
-Vedi **[VISION.md](VISION.md)** per il manifesto completo.
+Dettagli: **[VISION.md](VISION.md)**.
 
-## Uso rapido
+## Installazione
 
 ```bash
-git clone https://github.com/<org>/bootstrap-italia-mcp.git
-cd bootstrap-italia-mcp && npm install && npm run build
-node sota/codegen.mjs      # genera componenti, gallery, llms.txt, contratti
-
-npm run inspect            # prova i tool MCP nell'Inspector
+git clone https://github.com/andreaderuvo/agid-llm-ui.git
+cd agid-llm-ui
+npm install
+npm run build            # compila il server MCP
+node sota/codegen.mjs    # genera componenti, galleria, llms.txt, contratti
 ```
 
-Collega l'MCP a Claude Code:
+### Usare il server MCP
+
+> MCP è uno **standard aperto**: questo server funziona con **qualsiasi client compatibile** — Claude (Desktop/Code), Cursor, VS Code (GitHub Copilot agent), Windsurf, Cline, Zed, JetBrains AI… Non è legato a un solo editor.
+
+Provalo con l'Inspector:
 ```bash
-claude mcp add bootstrap-italia -- node /percorso/assoluto/bootstrap-italia-mcp/dist/index.js
+npm run inspect
 ```
-Poi nell'editor: *«Crea la pagina di un servizio comunale conforme ad AgID con accesso SPID»* → l'AI usa i tool e genera markup conforme, preferendo i Web Components.
+
+**Claude Code:**
+```bash
+claude mcp add agid-llm-ui -- node /percorso/assoluto/agid-llm-ui/dist/index.js
+```
+
+**Cursor / Claude Desktop / altri client** — aggiungi al file di configurazione MCP:
+```json
+{
+  "mcpServers": {
+    "agid-llm-ui": {
+      "command": "node",
+      "args": ["/percorso/assoluto/agid-llm-ui/dist/index.js"]
+    }
+  }
+}
+```
+
+Poi, nell'editor: *«Crea una pagina di un servizio comunale conforme ad AgID»* → l'assistente usa i tool e genera markup conforme, preferendo i Web Components.
 
 Galleria in locale: apri `sota/dist/index.html` (o servila con un web server statico).
 
