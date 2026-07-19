@@ -612,7 +612,7 @@ writeFileSync(join(DIST, "index.html"), gallery);
 
 // ---------------------------------------------------------------- 8) esempio: home di un Comune
 const PROMPT_ESEMPIO =
-  "Crea la home di un sito comunale conforme ad AgID: header istituzionale, menu di navigazione, " +
+  "Crea la home di un sito comunale conforme ad AgID: header istituzionale, menu di navigazione con selettore lingua IT/EN, " +
   "hero, griglia di servizi in evidenza, un avviso, le ultime notizie, una tabella pagamenti " +
   "ricercabile, le FAQ e un modulo di iscrizione. Usa i web components del design system (tag it-*).";
 const esempioComune = `<!doctype html>
