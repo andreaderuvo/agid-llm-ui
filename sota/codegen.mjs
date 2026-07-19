@@ -1107,7 +1107,7 @@ writeFileSync(join(DIST, "contatti.html"), contatti);
 const PAGE_I18N = {
   // navigazione / header / footer (comuni)
   "Home": "Home", "Servizi": "Services", "Amministrazione": "Administration", "Prenotazioni": "Bookings", "Contributi": "Grants", "Contatti": "Contacts",
-  "Servizi digitali al cittadino": "Digital services for citizens",
+  "Servizi digitali al cittadino": "Digital services for citizens", "Regione Esempio": "Example Region", "Comune di Esempio": "Municipality of Esempio",
   "Amministrazione trasparente": "Transparent administration", "Dichiarazione di accessibilità": "Accessibility statement", "Privacy": "Privacy", "Note legali": "Legal notes",
   "← Torna alla galleria dei componenti": "← Back to the component gallery", "← Home del Comune": "← Municipality home", "Galleria componenti": "Component gallery", "Codice su GitHub": "Code on GitHub",
   // home
@@ -1145,7 +1145,7 @@ writeFileSync(
   var loc; try { loc = localStorage.getItem('agid-locale'); } catch (e) {}
   if (loc !== 'en') return;
   var M = ${JSON.stringify(PAGE_I18N)};
-  var attrs = ['label', 'title', 'trigger', 'data-header', 'data-step', 'data-value', 'placeholder', 'category'];
+  var attrs = ['label', 'title', 'trigger', 'data-header', 'data-step', 'data-value', 'placeholder', 'category', 'ente', 'nome', 'tagline'];
   document.querySelectorAll('*').forEach(function (el) {
     if (!el.getAttribute) return;
     attrs.forEach(function (a) { var v = el.getAttribute(a); if (v && M[v]) el.setAttribute(a, M[v]); });
