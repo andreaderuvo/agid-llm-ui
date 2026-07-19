@@ -9,7 +9,9 @@
 ![non ufficiale](https://img.shields.io/badge/progetto-community%20non%20ufficiale-lightgrey)
 ![componenti](https://img.shields.io/badge/componenti-49-blue)
 <!-- Dopo il primo push, abilita anche il badge CI:
-![CI](https://github.com/<tuo-username>/agid-llm-ui/actions/workflows/ci.yml/badge.svg) -->
+![CI](https://github.com/andreaderuvo/agid-llm-ui/actions/workflows/ci.yml/badge.svg) -->
+
+**🔗 Galleria + demo (GitHub Pages):** https://andreaderuvo.github.io/agid-llm-ui/ · [home di un Comune generata col design system](https://andreaderuvo.github.io/agid-llm-ui/esempio-comune.html)
 
 
 ---

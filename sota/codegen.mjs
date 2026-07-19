@@ -76,9 +76,102 @@ it-accordion .it-accordion-chev { width: .55em; height: .55em; flex: 0 0 auto; b
 it-accordion .it-accordion-btn[aria-expanded="true"] .it-accordion-chev { transform: rotate(-135deg); }
 it-accordion .it-accordion-panel { padding: var(--it-space-md); color: var(--it-color-text); }
 `;
+// CSS di runtime dei componenti interattivi (deve stare nel foglio condiviso,
+// così anche pagine esterne / siti reali hanno gli stili, non solo la galleria).
+const RUNTIME_CSS = `
+.agid-btn { font: inherit; font-weight: 600; cursor: pointer; border-radius: var(--it-radius-md); padding: .5em 1.25em; border: 2px solid var(--it-color-primary); background: var(--it-color-primary); color: #fff; }
+.agid-btn-outline { background: transparent; color: var(--it-color-primary); }
+.zag-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.5); }
+.zag-positioner { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.zag-content { background: #fff; border-radius: var(--it-radius-md); padding: var(--it-space-lg); max-width: 440px; box-shadow: 0 12px 48px rgba(0,0,0,.25); }
+.zag-content .zag-title { margin: 0 0 .5rem; } .zag-actions { margin-top: var(--it-space-lg); text-align: right; }
+.agid-tabs { width: 100%; } .agid-tablist { display: flex; gap: .25rem; border-bottom: 2px solid var(--it-color-border); }
+.agid-tab { font: inherit; font-weight: 600; cursor: pointer; border: 0; background: transparent; color: var(--it-color-muted); padding: .6em 1em; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.agid-tab[data-selected] { color: var(--it-color-primary); border-bottom-color: var(--it-color-primary); }
+.agid-tab:focus-visible { outline: 3px solid var(--it-color-focus); outline-offset: -3px; }
+.agid-tabpanel { padding: var(--it-space-md) 0; }
+.agid-tip-positioner { position: absolute; }
+.agid-tip { background: var(--it-color-text); color: #fff; padding: .35em .6em; border-radius: var(--it-radius-sm); font-size: .85rem; max-width: 240px; }
+.agid-pop-positioner { position: absolute; }
+.agid-pop { background: #fff; border: 1px solid var(--it-color-border); border-radius: var(--it-radius-md); padding: var(--it-space-md); box-shadow: 0 8px 24px rgba(0,0,0,.15); max-width: 280px; }
+.agid-pop-title { font-weight: 700; margin-bottom: .25rem; }
+.agid-switch { display: inline-flex; align-items: center; gap: .5em; cursor: pointer; }
+.agid-switch-control { width: 2.4em; height: 1.3em; border-radius: 999px; background: var(--it-color-muted); position: relative; transition: background .2s; flex: 0 0 auto; }
+.agid-switch-control[data-state="checked"] { background: var(--it-color-primary); }
+.agid-switch-thumb { position: absolute; top: 2px; left: 2px; width: calc(1.3em - 4px); height: calc(1.3em - 4px); border-radius: 50%; background: #fff; transition: transform .2s; }
+.agid-switch-control[data-state="checked"] .agid-switch-thumb { transform: translateX(1.1em); }
+.agid-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+.agid-collapsible-content { padding-top: var(--it-space-sm); }
+.agid-number-control { display: inline-flex; align-items: stretch; }
+.agid-number-btn { font: inherit; width: 2.2em; border: 1px solid var(--it-color-border); background: #fff; cursor: pointer; }
+.agid-number-control .agid-input { width: 4em; text-align: center; border-radius: 0; }
+.agid-menu-positioner { position: absolute; }
+.agid-menu { background: #fff; border: 1px solid var(--it-color-border); border-radius: var(--it-radius-sm); box-shadow: 0 8px 24px rgba(0,0,0,.15); padding: .25rem; min-width: 160px; }
+.agid-menu-item { padding: .5em .75em; border-radius: var(--it-radius-sm); cursor: pointer; }
+.agid-menu-item[data-highlighted] { background: var(--it-color-info-bg); color: var(--it-color-primary); }
+.agid-steps-list { display: flex; gap: .5rem; align-items: center; }
+.agid-step { display: flex; align-items: center; gap: .4em; background: transparent; border: 0; font: inherit; cursor: pointer; color: var(--it-color-muted); }
+.agid-step-num { display: inline-flex; align-items: center; justify-content: center; width: 1.8em; height: 1.8em; border-radius: 50%; background: var(--it-color-border); color: var(--it-color-text); font-weight: 700; }
+.agid-step[data-current] { color: var(--it-color-primary); } .agid-step[data-current] .agid-step-num { background: var(--it-color-primary); color: #fff; }
+.agid-step[data-complete] .agid-step-num { background: var(--it-color-success-accent); color: #fff; }
+.agid-step-content { padding: var(--it-space-md) 0; } .agid-steps-nav { display: flex; gap: .5rem; }
+.agid-rating-control { display: inline-flex; gap: .1em; font-size: 1.6rem; }
+.agid-rating-item { color: var(--it-color-border); cursor: pointer; }
+.agid-rating-item[data-highlighted], .agid-rating-item[data-checked] { color: var(--it-color-warning-accent); }
+.agid-rating input { position: absolute; opacity: 0; }
+.agid-select-trigger, .agid-combobox-control { display: inline-flex; align-items: center; justify-content: space-between; gap: .5em; min-width: 200px; font: inherit; padding: .5em .75em; border: 1px solid var(--it-color-border); border-radius: var(--it-radius-sm); background: #fff; cursor: pointer; }
+.agid-combobox-control .agid-input { border: 0; outline: 0; width: 100%; }
+.agid-select-positioner { position: absolute; }
+.agid-select-content { background: #fff; border: 1px solid var(--it-color-border); border-radius: var(--it-radius-sm); box-shadow: 0 8px 24px rgba(0,0,0,.15); padding: .25rem; min-width: 200px; max-height: 240px; overflow: auto; }
+.agid-select-item { padding: .5em .75em; border-radius: var(--it-radius-sm); cursor: pointer; }
+.agid-select-item[data-highlighted] { background: var(--it-color-info-bg); color: var(--it-color-primary); }
+.agid-select-item[data-state="checked"] { font-weight: 700; }
+.agid-slider-control { position: relative; height: 1.5rem; display: flex; align-items: center; }
+.agid-slider-track { height: 4px; background: var(--it-color-border); border-radius: 999px; flex: 1; position: relative; }
+.agid-slider-range { position: absolute; height: 100%; background: var(--it-color-primary); border-radius: 999px; }
+.agid-slider-thumb { width: 1.1rem; height: 1.1rem; background: var(--it-color-primary); border-radius: 50%; outline: none; }
+.agid-slider-thumb:focus-visible { box-shadow: 0 0 0 3px var(--it-color-focus); }
+.agid-pin-control { display: inline-flex; gap: .4rem; } .agid-pin-input { width: 2.5em; text-align: center; font: inherit; padding: .4em; border: 1px solid var(--it-color-border); border-radius: var(--it-radius-sm); }
+.agid-tags-control { display: flex; flex-wrap: wrap; gap: .3rem; align-items: center; border: 1px solid var(--it-color-border); border-radius: var(--it-radius-sm); padding: .3rem; }
+.agid-tags-control .agid-input { border: 0; outline: 0; flex: 1; min-width: 6em; }
+.agid-tag { display: inline-flex; align-items: center; gap: .25em; background: var(--it-color-info-bg); color: var(--it-color-primary); border-radius: 999px; padding: .15em .6em; font-size: .9rem; }
+.agid-tag-del { border: 0; background: transparent; cursor: pointer; color: inherit; font-size: 1.1em; line-height: 1; }
+.agid-upload-drop { border: 2px dashed var(--it-color-border); border-radius: var(--it-radius-md); padding: var(--it-space-md); text-align: center; }
+.agid-upload-drop[data-dragging] { border-color: var(--it-color-primary); background: var(--it-color-info-bg); }
+.agid-upload-list { list-style: none; padding: 0; margin: .5rem 0 0; }
+.agid-carousel-track { display: flex; overflow: hidden; gap: 1rem; } .agid-carousel-slide { min-width: 100%; padding: var(--it-space-lg); background: var(--it-color-info-bg); border-radius: var(--it-radius-md); }
+.agid-carousel-controls { display: flex; gap: .5rem; margin-top: .5rem; }
+.agid-datepicker-control { display: inline-flex; gap: .3rem; }
+.agid-datepicker-content { background: #fff; border: 1px solid var(--it-color-border); border-radius: var(--it-radius-md); box-shadow: 0 8px 24px rgba(0,0,0,.15); padding: var(--it-space-md); }
+.agid-dp-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
+.agid-dp-nav, .agid-dp-view { border: 0; background: transparent; font: inherit; cursor: pointer; }
+.agid-dp-table { border-collapse: collapse; } .agid-dp-table th { font-size: .75rem; color: var(--it-color-muted); padding: .2rem; }
+.agid-dp-day { width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; }
+.agid-dp-day[data-highlighted] { background: var(--it-color-info-bg); } .agid-dp-day[data-selected] { background: var(--it-color-primary); color: #fff; }
+.agid-toast-region { position: fixed; top: 1rem; right: 1rem; display: flex; flex-direction: column; gap: .5rem; z-index: 2000; max-width: 320px; }
+.agid-toast { position: relative; background: #fff; border-left: 4px solid var(--it-color-info-accent); border-radius: var(--it-radius-sm); box-shadow: 0 8px 24px rgba(0,0,0,.2); padding: .75rem 2rem .75rem .75rem; }
+.agid-toast-success { border-left-color: var(--it-color-success-accent); }
+.agid-toast-error { border-left-color: #b3261e; } .agid-toast-warning { border-left-color: var(--it-color-warning-accent); }
+.agid-toast-title { font-weight: 700; }
+.agid-toast-close { position: absolute; top: .3rem; right: .4rem; border: 0; background: transparent; cursor: pointer; font-size: 1.2rem; line-height: 1; }
+.agid-megamenu { display: flex; gap: 1.5rem; background: #fff; border: 1px solid var(--it-color-border); border-radius: var(--it-radius-md); box-shadow: 0 8px 24px rgba(0,0,0,.15); padding: var(--it-space-md); }
+.agid-megamenu-title { font-weight: 700; color: var(--it-color-muted); margin-bottom: .25rem; }
+.agid-navscroll { border-left: 2px solid var(--it-color-border); padding-left: 1rem; }
+.agid-dt-search { margin-bottom: .5rem; } .agid-dt-search label { display: block; font-weight: 600; margin-bottom: .25rem; }
+.agid-dt-sort { font: inherit; font-weight: 700; background: transparent; border: 0; cursor: pointer; color: var(--it-color-text); display: inline-flex; align-items: center; gap: .3em; }
+.agid-dt-sort:focus-visible { outline: 3px solid var(--it-color-focus); }
+th[aria-sort="ascending"] .agid-dt-ind::after { content: "▲"; font-size: .7em; color: var(--it-color-primary); }
+th[aria-sort="descending"] .agid-dt-ind::after { content: "▼"; font-size: .7em; color: var(--it-color-primary); }
+th[aria-sort="none"] .agid-dt-ind::after { content: "⇅"; font-size: .7em; color: var(--it-color-muted); }
+.agid-dt-pager { display: flex; gap: .25rem; margin-top: .5rem; flex-wrap: wrap; }
+.agid-dt-pager .agid-page-link { border: 1px solid var(--it-color-border); background: #fff; padding: .4em .7em; border-radius: var(--it-radius-sm); cursor: pointer; font: inherit; color: var(--it-color-primary); }
+.agid-dt-pager .agid-page-link.is-current { background: var(--it-color-primary); color: #fff; border-color: var(--it-color-primary); }
+.agid-dt-pager .agid-page-link[disabled] { opacity: .4; cursor: not-allowed; }
+[hidden] { display: none !important; }
+`;
 // CSS aggiuntivo portato DALLA spec (ogni componente può definire il proprio `style`)
 const specStyles = components.map((s) => s.style || "").filter(Boolean).join("\n");
-writeFileSync(join(DIST, "it-tokens.css"), tokenCss + COMPONENT_CSS + "\n" + specStyles);
+writeFileSync(join(DIST, "it-tokens.css"), tokenCss + COMPONENT_CSS + "\n" + RUNTIME_CSS + "\n" + specStyles);
 
 // ---------------------------------------------------------------- 2) WEB COMPONENTS
 // generatore generico (componenti presentazionali) guidato dal campo "render"
@@ -465,6 +558,7 @@ const gallery = `<!doctype html>
   <header class="top">
     <h1>Design System PA — <strong>LLM-first</strong></h1>
     <p>Pensato perché siano gli assistenti AI a costruire UI della PA conformi ad AgID. Web Components universali (React, Vue, Angular, HTML puro) con accessibilità incapsulata, generati da <code style="color:#fff">spec/</code>. Progetto community, non ufficiale.</p>
+    <p style="margin:.5rem 0 0"><a href="esempio-comune.html" style="color:#fff;font-weight:700">▶ Guarda un esempio completo: home di un Comune (con form)</a></p>
   </header>
   <div class="layout">
     <nav class="toc">
@@ -493,6 +587,131 @@ const gallery = `<!doctype html>
 </html>
 `;
 writeFileSync(join(DIST, "index.html"), gallery);
+
+// ---------------------------------------------------------------- 8) esempio: home di un Comune
+const PROMPT_ESEMPIO =
+  "Crea la home di un sito comunale conforme ad AgID: header istituzionale, menu di navigazione, " +
+  "hero, griglia di servizi in evidenza, un avviso, le ultime notizie, una tabella pagamenti " +
+  "ricercabile, le FAQ e un modulo di iscrizione. Usa i web components del design system (tag it-*).";
+const esempioComune = `<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comune di Esempio — sito generato con agid-llm-ui</title>
+  <link href="https://cdn.jsdelivr.net/npm/@fontsource/titillium-web@5/index.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="it-tokens.css">
+  <style>
+    body { margin: 0; }
+    .container { max-width: 1040px; margin: 0 auto; padding: 0 1rem; }
+    main { padding: 1.5rem 0 3rem; }
+    h1, h2 { color: var(--it-color-text); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .prompt-banner { background: var(--it-color-text); color: #fff; padding: 1rem 0; font-size: .95rem; }
+    .prompt-banner .container { display: flex; gap: .75rem; align-items: baseline; flex-wrap: wrap; }
+    .prompt-banner code { background: #ffffff22; padding: .15em .4em; border-radius: 4px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+    .backlink { display: inline-block; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <a class="visually-hidden" href="#contenuto">Vai al contenuto</a>
+
+  <div class="prompt-banner">
+    <div class="container">
+      <strong>🤖 Esempio LLM-first.</strong>
+      <span>Questa pagina è il tipo di risultato ottenibile da un prompt come: <code>${PROMPT_ESEMPIO}</code></span>
+    </div>
+  </div>
+
+  <it-header ente="Regione Esempio" nome="Comune di Esempio" tagline="Servizi digitali al cittadino"></it-header>
+  <div class="container" style="padding-top:.5rem">
+    <it-navbar>
+      <a href="#">Home</a>
+      <a href="#">Servizi</a>
+      <a href="#">Amministrazione</a>
+      <a href="#">Novità</a>
+      <a href="#">Contatti</a>
+    </it-navbar>
+  </div>
+
+  <it-hero title="Benvenuto nel Comune di Esempio" category="Home">Trova e accedi ai servizi del Comune, paga i tributi e resta aggiornato.</it-hero>
+
+  <main id="contenuto">
+    <div class="container">
+      <it-breadcrumb>
+        <a href="#">Home</a>
+        <a>Servizi al cittadino</a>
+      </it-breadcrumb>
+
+      <h2>Servizi in evidenza</h2>
+      <div class="grid">
+        <it-card title="Anagrafe">Certificati, cambio di residenza e carta d'identità.</it-card>
+        <it-card title="Tributi">Consulta e paga IMU, TARI e altri tributi comunali.</it-card>
+        <it-card title="Scuola e mensa">Iscrizioni ai servizi scolastici e refezione.</it-card>
+      </div>
+
+      <it-callout variant="warning" title="Avviso">Dal 1° settembre le domande per la mensa si presentano solo online.</it-callout>
+
+      <h2>Ultime notizie</h2>
+      <it-timeline>
+        <div data-date="10 luglio 2026" data-title="Aperte le iscrizioni alla mensa">Domande entro il 31 agosto.</div>
+        <div data-date="2 luglio 2026" data-title="Lavori in Via Roma">Modifiche alla viabilità fino a settembre.</div>
+      </it-timeline>
+
+      <h2>I tuoi pagamenti</h2>
+      <it-datatable page-size="5" searchable>
+        <table>
+          <caption>Pagamenti effettuati</caption>
+          <thead><tr><th>Data</th><th>Descrizione</th><th>Importo</th></tr></thead>
+          <tbody>
+            <tr><td>01/03/2026</td><td>Mensa marzo</td><td>45,00</td></tr>
+            <tr><td>01/04/2026</td><td>Mensa aprile</td><td>45,00</td></tr>
+            <tr><td>10/04/2026</td><td>TARI acconto</td><td>120,00</td></tr>
+            <tr><td>05/05/2026</td><td>Mensa maggio</td><td>48,50</td></tr>
+            <tr><td>01/06/2026</td><td>IMU acconto</td><td>210,00</td></tr>
+            <tr><td>20/06/2026</td><td>Gita scolastica</td><td>25,00</td></tr>
+          </tbody>
+        </table>
+      </it-datatable>
+
+      <h2>Domande frequenti</h2>
+      <it-accordion>
+        <div data-header="Chi può presentare domanda">Tutti i cittadini residenti nel Comune.</div>
+        <div data-header="Come si paga">Con SPID/CIE tramite pagoPA, oppure allo sportello.</div>
+      </it-accordion>
+
+      <h2>Iscrizione al servizio mensa</h2>
+      <form onsubmit="return false">
+        <div class="form-row">
+          <it-input label="Nome e cognome del genitore"></it-input>
+          <it-input label="Nome dell'alunno"></it-input>
+        </div>
+        <it-select label="Plesso scolastico">
+          <div data-value="a">Scuola Rodari</div>
+          <div data-value="b">Scuola Montessori</div>
+        </it-select>
+        <div style="margin:.75rem 0"><it-checkbox>Ho letto e accetto l'informativa sulla privacy</it-checkbox></div>
+        <it-dialog trigger="Invia la domanda" title="Confermi l'invio?">La domanda verrà inviata all'ufficio scuola. Procedere?</it-dialog>
+        <span style="margin-left:.5rem"></span>
+        <it-toast trigger="Simula esito" type="success" title="Domanda inviata">Riceverai conferma via email.</it-toast>
+      </form>
+
+      <a class="backlink" href="index.html">← Torna alla galleria dei componenti</a>
+    </div>
+  </main>
+
+  <div style="margin-top:2rem">
+    <it-footer nome="Comune di Esempio"></it-footer>
+  </div>
+
+  <script defer src="it-components.js"></script>
+  <script defer src="it-behavioral.bundle.js"></script>
+</body>
+</html>
+`;
+writeFileSync(join(DIST, "esempio-comune.html"), esempioComune);
 
 console.log("✅ Generati da spec/ ->");
 console.log("   - dist/index.html            (GALLERIA componenti, pronta per GitHub Pages)");
