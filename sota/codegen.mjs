@@ -619,6 +619,9 @@ const esempioComune = `<!doctype html>
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
     .backlink { display: inline-block; margin: 1rem 0; }
+    .color-switcher { position: fixed; bottom: 1rem; right: 1rem; z-index: 3000; background: #fff; border: 1px solid var(--it-color-border); border-radius: 999px; box-shadow: 0 6px 24px rgba(0,0,0,.2); padding: .5rem .75rem; display: flex; align-items: center; gap: .4rem; font-size: .85rem; flex-wrap: wrap; max-width: calc(100vw - 2rem); }
+    .color-switcher button { width: 1.5rem; height: 1.5rem; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--it-color-border); cursor: pointer; padding: 0; }
+    .color-switcher input[type=color] { width: 1.7rem; height: 1.7rem; border: 0; background: none; cursor: pointer; padding: 0; }
   </style>
 </head>
 <body>
@@ -706,6 +709,24 @@ const esempioComune = `<!doctype html>
       </form>
 
       <a class="backlink" href="index.html">← Torna alla galleria dei componenti</a>
+
+      <div class="color-switcher" role="group" aria-label="Personalizza il colore dell'ente">
+        <span aria-hidden="true">🎨</span> Colore:
+        <button type="button" data-c="#0066CC" data-h="#004d99" style="background:#0066CC" aria-label="Blu"></button>
+        <button type="button" data-c="#2e7d32" data-h="#1b5e20" style="background:#2e7d32" aria-label="Verde"></button>
+        <button type="button" data-c="#6a1b9a" data-h="#4a148c" style="background:#6a1b9a" aria-label="Viola"></button>
+        <button type="button" data-c="#c62828" data-h="#8e0000" style="background:#c62828" aria-label="Rosso"></button>
+        <button type="button" data-c="#00838f" data-h="#005662" style="background:#00838f" aria-label="Teal"></button>
+        <input type="color" value="#0066CC" aria-label="Colore personalizzato">
+      </div>
+      <script>
+        (function () {
+          var r = document.documentElement.style;
+          function setColor(c, h) { r.setProperty('--it-color-primary', c); r.setProperty('--it-color-primary-hover', h || c); r.setProperty('--it-color-info-accent', c); }
+          document.querySelectorAll('.color-switcher button[data-c]').forEach(function (b) { b.addEventListener('click', function () { setColor(b.dataset.c, b.dataset.h); }); });
+          var inp = document.querySelector('.color-switcher input[type=color]'); if (inp) inp.addEventListener('input', function (e) { setColor(e.target.value); });
+        })();
+      </script>
     </div>
   </main>
 

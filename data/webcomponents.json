@@ -356,6 +356,39 @@
       "example": "<it-divider></it-divider>"
     },
     {
+      "tag": "it-drawer",
+      "intent": "Pannello off-canvas (menu laterale, filtri) che scivola da un lato",
+      "runtime": "zag",
+      "poweredBy": "@zag-js/dialog",
+      "props": {
+        "trigger": {
+          "type": "string",
+          "default": "Apri"
+        },
+        "title": {
+          "type": "string",
+          "default": "Pannello"
+        },
+        "side": {
+          "type": "enum",
+          "values": [
+            "left",
+            "right"
+          ],
+          "default": "left"
+        }
+      },
+      "a11y": [
+        "role=dialog + focus-trap + ESC + backdrop (da Zag)",
+        "Alla chiusura il focus torna al trigger",
+        "Blocco dello scroll di sfondo mentre è aperto"
+      ],
+      "forbidden": [
+        "pannello-senza-focus-trap"
+      ],
+      "example": "<it-drawer trigger=\"Apri menu laterale\" side=\"left\" title=\"Menu\">\n  <it-linklist>\n    <a href=\"#\">Anagrafe</a>\n    <a href=\"#\">Tributi</a>\n    <a href=\"#\">Servizi scolastici</a>\n  </it-linklist>\n</it-drawer>"
+    },
+    {
       "tag": "it-footer",
       "intent": "Piè di pagina istituzionale con link obbligatori",
       "runtime": "generated",

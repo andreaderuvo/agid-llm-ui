@@ -8,3 +8,4 @@ import "./batch3.mjs";
 import "./batch4.mjs";
 import "./batch5.mjs";
 import "./batch6.mjs";
+import "./batch7.mjs";
