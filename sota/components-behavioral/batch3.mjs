@@ -81,6 +81,7 @@ class ItNavbar extends HTMLElement {
     if (this.__i) return; this.__i = true;
     let activeIdx = [...this.querySelectorAll("a")].findIndex((a) => a.hasAttribute("data-active"));
     if (activeIdx < 0) activeIdx = 0;
+    const langs = (this.getAttribute("langs") || "").split(",").map((s) => s.trim()).filter(Boolean);
     const links = readLinks(this); this.innerHTML = "";
     const nav = el("nav", "agid-navbar"); nav.setAttribute("aria-label", "Navigazione principale");
     const inner = el("div", "agid-navbar-inner");
@@ -94,7 +95,14 @@ class ItNavbar extends HTMLElement {
       if (i === activeIdx) { a.classList.add("is-active"); a.setAttribute("aria-current", "page"); }
       li.appendChild(a); ul.appendChild(li);
     });
-    inner.append(toggle, ul); nav.appendChild(inner); this.appendChild(nav);
+    inner.append(toggle, ul);
+    if (langs.length) {
+      const ls = el("div", "agid-navbar-lang");
+      ls.append(document.createTextNode("🌐 "));
+      langs.forEach((l) => { const bl = el("button", "agid-lang-btn"); bl.type = "button"; bl.setAttribute("data-lang", l); bl.textContent = l.toUpperCase(); ls.appendChild(bl); });
+      inner.appendChild(ls);
+    }
+    nav.appendChild(inner); this.appendChild(nav);
     toggle.addEventListener("click", () => {
       const open = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", String(!open));

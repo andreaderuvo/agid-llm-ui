@@ -634,19 +634,19 @@ const esempioComune = `<!doctype html>
     <div class="container">
       <strong>🤖 Esempio LLM-first.</strong>
       <span>Questa pagina è il tipo di risultato ottenibile da un prompt come: <code>${PROMPT_ESEMPIO}</code></span>
-      <a href="https://github.com/andreaderuvo/agid-llm-ui" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a>
-      <span class="lang-switch" style="display:inline-flex;gap:.25rem;margin-left:auto">🌐 <button type="button" data-lang="it" style="background:transparent;border:1px solid #ffffff66;color:#fff;border-radius:4px;padding:.1em .5em;cursor:pointer;font:inherit;font-size:.85rem">IT</button><button type="button" data-lang="en" style="background:transparent;border:1px solid #ffffff66;color:#fff;border-radius:4px;padding:.1em .5em;cursor:pointer;font:inherit;font-size:.85rem">EN</button></span>
+      <a href="https://github.com/andreaderuvo/agid-llm-ui" style="color:#fff;font-weight:700;white-space:nowrap;margin-left:auto">⌨ GitHub →</a>
       <button type="button" class="prompt-close" aria-label="Chiudi il messaggio" style="background:transparent;border:0;color:#fff;font-size:1.4rem;line-height:1;cursor:pointer">×</button>
     </div>
   </div>
 
   <it-header ente="Regione Esempio" nome="Comune di Esempio" tagline="Servizi digitali al cittadino"></it-header>
-  <it-navbar>
+  <it-navbar langs="it,en">
     <a href="esempio-comune.html" data-active>Home</a>
     <a href="servizio-mensa.html">Servizi</a>
     <a href="amministrazione-trasparente.html">Amministrazione</a>
     <a href="prenotazione.html">Prenotazioni</a>
     <a href="domanda-contributo.html">Contributi</a>
+    <a href="contatti.html">Contatti</a>
   </it-navbar>
 
   <div class="container" style="margin-top:1.5rem">
@@ -731,7 +731,7 @@ const esempioComune = `<!doctype html>
           document.querySelectorAll('.color-switcher button[data-c]').forEach(function (b) { b.addEventListener('click', function () { setColor(b.dataset.c, b.dataset.h); }); });
           var inp = document.querySelector('.color-switcher input[type=color]'); if (inp) inp.addEventListener('input', function (e) { setColor(e.target.value); });
           var pc = document.querySelector('.prompt-close'); if (pc) pc.addEventListener('click', function () { var pb = pc.closest('.prompt-banner'); if (pb) pb.remove(); });
-          document.querySelectorAll('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { if (window.AgidI18n) window.AgidI18n.setLocale(b.dataset.lang); location.reload(); }); });
+          document.addEventListener('click', function (e) { var lb = e.target.closest && e.target.closest('[data-lang]'); if (lb) { if (window.AgidI18n) window.AgidI18n.setLocale(lb.getAttribute('data-lang')); location.reload(); } });
           if ('serviceWorker' in navigator && location.protocol === 'https:') { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); }); }
         })();
       </script>
@@ -742,6 +742,7 @@ const esempioComune = `<!doctype html>
     <it-footer nome="Comune di Esempio"></it-footer>
   </div>
 
+  <script src="demo-i18n.js"></script>
   <script defer src="it-components.js"></script>
   <script defer src="it-behavioral.bundle.js"></script>
 </body>
@@ -782,12 +783,13 @@ const servizioMensa = `<!doctype html>
   </div></div>
 
   <it-header ente="Regione Esempio" nome="Comune di Esempio" tagline="Servizi digitali al cittadino"></it-header>
-  <it-navbar>
+  <it-navbar langs="it,en">
     <a href="esempio-comune.html">Home</a>
     <a href="servizio-mensa.html" data-active>Servizi</a>
     <a href="amministrazione-trasparente.html">Amministrazione</a>
     <a href="prenotazione.html">Prenotazioni</a>
     <a href="domanda-contributo.html">Contributi</a>
+    <a href="contatti.html">Contatti</a>
   </it-navbar>
 
   <main id="contenuto">
@@ -842,7 +844,8 @@ const servizioMensa = `<!doctype html>
   </main>
 
   <div style="margin-top:2rem"><it-footer nome="Comune di Esempio"></it-footer></div>
-  <script>(function(){var pc=document.querySelector('.prompt-close');if(pc)pc.addEventListener('click',function(){var pb=pc.closest('.prompt-banner');if(pb)pb.remove();});})();</script>
+  <script>document.addEventListener('click',function(e){var pc=e.target.closest&&e.target.closest('.prompt-close');if(pc){var pb=pc.closest('.prompt-banner');if(pb)pb.remove();return;}var lb=e.target.closest&&e.target.closest('[data-lang]');if(lb){if(window.AgidI18n)window.AgidI18n.setLocale(lb.getAttribute('data-lang'));location.reload();}});</script>
+  <script src="demo-i18n.js"></script>
   <script defer src="it-components.js"></script>
   <script defer src="it-behavioral.bundle.js"></script>
 </body>
@@ -874,10 +877,10 @@ h1, h2, h3 { color: var(--it-color-text); }
 const langBtn = (l) => `<button type="button" data-lang="${l}" style="background:transparent;border:1px solid #ffffff66;color:#fff;border-radius:4px;padding:.1em .5em;cursor:pointer;font:inherit;font-size:.85rem">${l.toUpperCase()}</button>`;
 const LANG_SWITCH = `<span class="lang-switch" style="display:inline-flex;gap:.25rem;margin-left:auto">🌐 ${langBtn("it")}${langBtn("en")}</span>`;
 const promptBanner = (prompt) =>
-  `<div class="prompt-banner"><div class="container"><strong>🤖 Esempio LLM-first.</strong> <span>Generabile da: <code>${prompt}</code></span> <a href="${REPO}" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a> ${LANG_SWITCH} <button type="button" class="prompt-close" aria-label="Chiudi il messaggio">×</button></div></div>`;
+  `<div class="prompt-banner"><div class="container"><strong>🤖 Esempio LLM-first.</strong> <span>Generabile da: <code>${prompt}</code></span> <a href="${REPO}" style="color:#fff;font-weight:700;white-space:nowrap;margin-left:auto">⌨ GitHub →</a> <button type="button" class="prompt-close" aria-label="Chiudi il messaggio">×</button></div></div>`;
 const navbar = (items, active) =>
-  `<it-navbar>${items.map(([t, h], i) => `<a href="${h}"${i === active ? " data-active" : ""}>${t}</a>`).join("")}</it-navbar>`;
-const closeScript = `<script>(function(){var pc=document.querySelector('.prompt-close');if(pc)pc.addEventListener('click',function(){var pb=pc.closest('.prompt-banner');if(pb)pb.remove();});document.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){if(window.AgidI18n)window.AgidI18n.setLocale(b.dataset.lang);location.reload();});});})();</script>`;
+  `<it-navbar langs="it,en">${items.map(([t, h], i) => `<a href="${h}"${i === active ? " data-active" : ""}>${t}</a>`).join("")}</it-navbar>`;
+const closeScript = `<script>document.addEventListener('click',function(e){var pc=e.target.closest&&e.target.closest('.prompt-close');if(pc){var pb=pc.closest('.prompt-banner');if(pb)pb.remove();return;}var lb=e.target.closest&&e.target.closest('[data-lang]');if(lb){if(window.AgidI18n)window.AgidI18n.setLocale(lb.getAttribute('data-lang'));location.reload();}});</script>`;
 const pageShell = ({ title, prompt, ente, nome, tagline, nav, body, footerNome }) => `<!doctype html>
 <html lang="it">
 <head>
@@ -896,12 +899,13 @@ const pageShell = ({ title, prompt, ente, nome, tagline, nav, body, footerNome }
   <main id="contenuto"><div class="container">${body}</div></main>
   <div style="margin-top:2rem"><it-footer nome="${footerNome}"></it-footer></div>
   ${closeScript}
+  <script src="demo-i18n.js"></script>
   <script defer src="it-components.js"></script>
   <script defer src="it-behavioral.bundle.js"></script>
 </body>
 </html>`;
 
-const COMUNE_NAV = [["Home", "esempio-comune.html"], ["Servizi", "servizio-mensa.html"], ["Amministrazione", "amministrazione-trasparente.html"], ["Prenotazioni", "prenotazione.html"], ["Contatti", "#"]];
+const COMUNE_NAV = [["Home", "esempio-comune.html"], ["Servizi", "servizio-mensa.html"], ["Amministrazione", "amministrazione-trasparente.html"], ["Prenotazioni", "prenotazione.html"], ["Contributi", "domanda-contributo.html"], ["Contatti", "contatti.html"]];
 const otherDemos = `<div class="sec"><a class="backlink" href="esempio-comune.html">← Home del Comune</a><a class="backlink" href="index.html">Galleria componenti</a><a class="backlink" href="${REPO}">Codice su GitHub</a></div>`;
 
 // --- Amministrazione Trasparente ---
@@ -1056,6 +1060,101 @@ const domanda = pageShell({
     ${otherDemos}`,
 });
 writeFileSync(join(DIST, "domanda-contributo.html"), domanda);
+
+// --- Contatti ---
+const contatti = pageShell({
+  title: "Contatti — Comune di Esempio",
+  prompt: "Crea la pagina Contatti conforme ad AgID: recapiti, orari di apertura e un modulo di contatto.",
+  ente: "Regione Esempio", nome: "Comune di Esempio", tagline: "Servizi digitali al cittadino",
+  nav: navbar(COMUNE_NAV, 5), footerNome: "Comune di Esempio",
+  body: `
+    <it-breadcrumb><a href="esempio-comune.html">Home</a><a>Contatti</a></it-breadcrumb>
+    <h1>Contatti</h1>
+    <p class="lead">Come raggiungerci e come scriverci.</p>
+    <div class="grid">
+      <it-card title="Indirizzo">Piazza del Comune 1, 00100 Esempio (ES)</it-card>
+      <it-card title="Telefono">+39 06 1234567</it-card>
+      <it-card title="Email">info@comune.esempio.it</it-card>
+      <it-card title="PEC">comune.esempio@pec.it</it-card>
+    </div>
+    <h2>Orari di apertura</h2>
+    <it-table>
+      <table>
+        <caption>Sportello al cittadino</caption>
+        <thead><tr><th>Giorno</th><th>Mattina</th><th>Pomeriggio</th></tr></thead>
+        <tbody>
+          <tr><td>Lunedì</td><td>9:00–12:30</td><td>—</td></tr>
+          <tr><td>Martedì</td><td>9:00–12:30</td><td>15:00–17:00</td></tr>
+          <tr><td>Mercoledì</td><td>9:00–12:30</td><td>—</td></tr>
+          <tr><td>Giovedì</td><td>9:00–12:30</td><td>15:00–17:00</td></tr>
+          <tr><td>Venerdì</td><td>9:00–12:30</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </it-table>
+    <h2>Scrivici</h2>
+    <form>
+      <div class="field"><it-input label="Nome e cognome"></it-input></div>
+      <div class="field"><it-input label="Email" type="email"></it-input></div>
+      <div class="field"><it-textarea label="Messaggio"></it-textarea></div>
+      <div class="field"><it-checkbox>Accetto l'informativa sulla privacy</it-checkbox></div>
+      <it-dialog trigger="Invia messaggio" title="Confermi l'invio?">Il messaggio sarà inviato all'ufficio relazioni con il pubblico.</it-dialog>
+    </form>
+    ${otherDemos}`,
+});
+writeFileSync(join(DIST, "contatti.html"), contatti);
+
+// ---------------------------------------------------------------- 8c-bis) traduzione contenuti demo (IT->EN)
+const PAGE_I18N = {
+  // navigazione / header / footer (comuni)
+  "Home": "Home", "Servizi": "Services", "Amministrazione": "Administration", "Prenotazioni": "Bookings", "Contributi": "Grants", "Contatti": "Contacts",
+  "Servizi digitali al cittadino": "Digital services for citizens",
+  "Amministrazione trasparente": "Transparent administration", "Dichiarazione di accessibilità": "Accessibility statement", "Privacy": "Privacy", "Note legali": "Legal notes",
+  "← Torna alla galleria dei componenti": "← Back to the component gallery", "← Home del Comune": "← Municipality home", "Galleria componenti": "Component gallery", "Codice su GitHub": "Code on GitHub",
+  // home
+  "Benvenuto nel Comune di Esempio": "Welcome to the Municipality of Esempio",
+  "Trova e accedi ai servizi del Comune, paga i tributi e resta aggiornato.": "Find and access municipal services, pay taxes and stay updated.",
+  "Servizi al cittadino": "Citizen services", "Servizi in evidenza": "Featured services",
+  "Anagrafe": "Registry office", "Certificati, cambio di residenza e carta d'identità.": "Certificates, change of residence and ID card.",
+  "Tributi": "Taxes", "Consulta e paga IMU, TARI e altri tributi comunali.": "Check and pay municipal taxes.",
+  "Scuola e mensa": "School & canteen", "Iscrizioni ai servizi scolastici e refezione. ": "Enrollment for school services and meals. ", "Vai al servizio →": "Go to service →",
+  "Avviso": "Notice", "Dal 1° settembre le domande per la mensa si presentano solo online.": "From 1 September canteen applications are online only.",
+  "Ultime notizie": "Latest news", "Aperte le iscrizioni alla mensa": "Canteen enrollment open", "Domande entro il 31 agosto.": "Applications by 31 August.",
+  "Lavori in Via Roma": "Roadworks in Via Roma", "Modifiche alla viabilità fino a settembre.": "Traffic changes until September.",
+  "I tuoi pagamenti": "Your payments", "Pagamenti effettuati": "Payments made", "Data": "Date", "Descrizione": "Description", "Importo": "Amount",
+  "Domande frequenti": "FAQ", "Chi può presentare domanda": "Who can apply", "Tutti i cittadini residenti nel comune.": "All residents of the municipality.", "Come si paga": "How to pay", "Con SPID/CIE tramite pagoPA, oppure allo sportello.": "With SPID/CIE via pagoPA, or at the desk.",
+  "Iscrizione al servizio mensa": "Canteen enrollment", "Nome e cognome del genitore": "Parent full name", "Nome dell'alunno": "Pupil name", "Plesso scolastico": "School building",
+  "Ho letto e accetto l'informativa sulla privacy": "I have read and accept the privacy policy", "Invia la domanda": "Submit application", "Simula esito": "Simulate result", "Vuoi procedere?": "Do you want to proceed?", "Confermi l'invio?": "Confirm submission?",
+  // steps / servizio / prenotazione / contributo (titoli step e sezioni)
+  "Compila la domanda": "Fill in the application", "Dati anagrafici": "Personal data", "Scuola": "School", "Documenti e invio": "Documents & submit",
+  "Oppure accedi con identità digitale": "Or sign in with digital identity", "Accedi con SPID": "Sign in with SPID",
+  "Prenota un appuntamento": "Book an appointment", "Ufficio": "Office", "Data e ora": "Date & time", "Conferma": "Confirm",
+  "Domanda di contributo economico": "Application for financial support", "Richiedente": "Applicant", "Nucleo familiare": "Household", "Reddito e documenti": "Income & documents", "Conferma e invio": "Review & submit",
+  // amministrazione trasparente
+  "Bandi di gara e contratti": "Tenders and contracts", "Pagamenti dell'amministrazione": "Administration payments", "Titolari di incarichi": "Office holders",
+  // scuola
+  "Benvenuti all'Istituto Comprensivo Manzoni": "Welcome to Manzoni School", "Servizi per le famiglie": "Services for families", "Iscrizioni": "Enrollment", "Ultime comunicazioni": "Latest announcements",
+  // contatti
+  "Contatti": "Contacts", "Come raggiungerci e come scriverci.": "How to reach us and write to us.", "Indirizzo": "Address", "Telefono": "Phone", "Email": "Email", "PEC": "Certified email (PEC)",
+  "Orari di apertura": "Opening hours", "Sportello al cittadino": "Citizen desk", "Giorno": "Day", "Mattina": "Morning", "Pomeriggio": "Afternoon",
+  "Scrivici": "Write to us", "Nome e cognome": "Full name", "Messaggio": "Message", "Invia messaggio": "Send message", "Confermi l'invio?": "Confirm submission?",
+};
+writeFileSync(
+  join(DIST, "demo-i18n.js"),
+  `/* traduce i contenuti della pagina in inglese quando il locale è 'en' (prima che i componenti si montino) */
+(function () {
+  var loc; try { loc = localStorage.getItem('agid-locale'); } catch (e) {}
+  if (loc !== 'en') return;
+  var M = ${JSON.stringify(PAGE_I18N)};
+  var attrs = ['label', 'title', 'trigger', 'data-header', 'data-step', 'data-value', 'placeholder', 'category'];
+  document.querySelectorAll('*').forEach(function (el) {
+    if (!el.getAttribute) return;
+    attrs.forEach(function (a) { var v = el.getAttribute(a); if (v && M[v]) el.setAttribute(a, M[v]); });
+  });
+  var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+  var n; while ((n = w.nextNode())) { var t = n.nodeValue.trim(); if (t && M[t]) n.nodeValue = n.nodeValue.replace(t, M[t]); }
+})();
+`
+);
 
 // ---------------------------------------------------------------- 8d) PWA (demo installabile/offline)
 writeFileSync(
