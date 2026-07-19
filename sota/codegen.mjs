@@ -1178,18 +1178,19 @@ writeFileSync(
 );
 writeFileSync(
   join(DIST, "sw.js"),
-  `const CACHE = 'agid-comune-v1';
-const ASSETS = ['esempio-comune.html', 'it-tokens.css', 'it-components.js', 'it-behavioral.bundle.js', 'manifest.webmanifest', 'icon.svg'];
+  `const CACHE = 'agid-comune-v3';
+const ASSETS = ['esempio-comune.html', 'it-tokens.css', 'it-components.js', 'it-behavioral.bundle.js', 'demo-i18n.js', 'manifest.webmanifest', 'icon.svg'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
+// NETWORK-FIRST: online prende sempre l'ultima versione; la cache è solo fallback offline.
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
   e.respondWith(
-    caches.match(e.request).then((r) => r || fetch(e.request).then((resp) => {
+    fetch(e.request).then((resp) => {
       const copy = resp.clone();
       caches.open(CACHE).then((c) => c.put(e.request, copy)).catch(() => {});
       return resp;
-    }).catch(() => caches.match('esempio-comune.html')))
+    }).catch(() => caches.match(e.request).then((r) => r || caches.match('esempio-comune.html')))
   );
 });
 `
