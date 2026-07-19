@@ -505,6 +505,7 @@
       "props": {},
       "a11y": [
         "<nav aria-label='Navigazione principale'>",
+        "Su mobile: toggle hamburger con aria-expanded/aria-controls",
         "La voce corrente usa aria-current=page"
       ],
       "forbidden": [],

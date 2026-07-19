@@ -74,18 +74,29 @@ class ItTimeline extends HTMLElement {
   }
 }
 
+let __navUid = 0;
 class ItNavbar extends HTMLElement {
   connectedCallback() {
     if (this.__i) return; this.__i = true;
     const links = readLinks(this); this.innerHTML = "";
     const nav = el("nav", "agid-navbar"); nav.setAttribute("aria-label", "Navigazione principale");
-    const ul = el("ul", "agid-navbar-list");
+    const inner = el("div", "agid-navbar-inner");
+    const listId = "navlist-" + ++__navUid;
+    const toggle = el("button", "agid-navbar-toggle"); toggle.type = "button";
+    toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-controls", listId);
+    toggle.setAttribute("aria-label", "Apri o chiudi il menu di navigazione"); toggle.textContent = "☰";
+    const ul = el("ul", "agid-navbar-list"); ul.id = listId;
     links.forEach((l, i) => {
       const li = el("li"); const a = el("a", "agid-navbar-link"); a.href = l.href || "#"; a.textContent = l.text;
       if (i === 0) { a.classList.add("is-active"); a.setAttribute("aria-current", "page"); }
       li.appendChild(a); ul.appendChild(li);
     });
-    nav.appendChild(ul); this.appendChild(nav);
+    inner.append(toggle, ul); nav.appendChild(inner); this.appendChild(nav);
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      ul.classList.toggle("is-open", !open);
+    });
   }
 }
 

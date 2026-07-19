@@ -7,9 +7,10 @@
   "slot": "Voci come <a href>…</a>",
   "a11y": [
     "<nav aria-label='Navigazione principale'>",
+    "Su mobile: toggle hamburger con aria-expanded/aria-controls",
     "La voce corrente usa aria-current=page"
   ],
   "forbidden": [],
-  "style": "it-navbar .agid-navbar{background:var(--it-color-primary)} it-navbar .agid-navbar-list{list-style:none;display:flex;gap:.5rem;padding:0 .5rem;margin:0} it-navbar .agid-navbar-link{display:inline-block;padding:.9em 1em;color:#fff;text-decoration:none;border-bottom:3px solid transparent} it-navbar .agid-navbar-link.is-active{border-bottom-color:#fff;font-weight:700}",
+  "style": "it-navbar{display:block} it-navbar .agid-navbar{background:var(--it-color-primary)} it-navbar .agid-navbar-inner{max-width:1040px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;flex-wrap:wrap} it-navbar .agid-navbar-toggle{display:none;background:transparent;border:0;color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;padding:.6rem .4rem} it-navbar .agid-navbar-toggle:focus-visible{outline:3px solid var(--it-color-focus)} it-navbar .agid-navbar-list{list-style:none;display:flex;flex-wrap:wrap;gap:.25rem;margin:0;padding:0} it-navbar .agid-navbar-link{display:inline-block;padding:.9em 1em;color:#fff;text-decoration:none;border-bottom:3px solid transparent} it-navbar .agid-navbar-link.is-active{border-bottom-color:#fff;font-weight:700} @media (max-width:768px){it-navbar .agid-navbar-toggle{display:block} it-navbar .agid-navbar-list{display:none;flex-direction:column;width:100%} it-navbar .agid-navbar-list.is-open{display:flex} it-navbar .agid-navbar-link{width:100%}}",
   "example": "<it-navbar>\n  <a href=\"/\">Home</a>\n  <a href=\"/servizi\">Servizi</a>\n  <a href=\"/amministrazione\">Amministrazione</a>\n</it-navbar>"
 }

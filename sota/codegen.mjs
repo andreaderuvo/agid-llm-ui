@@ -558,7 +558,8 @@ const gallery = `<!doctype html>
   <header class="top">
     <h1>Design System PA — <strong>LLM-first</strong></h1>
     <p>Pensato perché siano gli assistenti AI a costruire UI della PA conformi ad AgID. Web Components universali (React, Vue, Angular, HTML puro) con accessibilità incapsulata, generati da <code style="color:#fff">spec/</code>. Progetto community, non ufficiale.</p>
-    <p style="margin:.5rem 0 0"><a href="esempio-comune.html" style="color:#fff;font-weight:700">▶ Guarda un esempio completo: home di un Comune (con form)</a></p>
+    <p style="margin:.5rem 0 0"><a href="esempio-comune.html" style="color:#fff;font-weight:700">▶ Guarda un esempio completo: home di un Comune (con form)</a>
+      &nbsp;·&nbsp; <a href="https://github.com/andreaderuvo/agid-llm-ui" style="color:#fff;font-weight:700">⌨ Codice su GitHub</a></p>
   </header>
   <div class="layout">
     <nav class="toc">
@@ -573,6 +574,7 @@ const gallery = `<!doctype html>
     <strong>Progetto community, non ufficiale.</strong> Non affiliato né approvato da AgID o Designers Italia.
     Costruito sopra <a href="https://github.com/italia/bootstrap-italia">Bootstrap Italia</a> (licenza BSD-3-Clause) nel rispetto della relativa attribuzione.
     Il nome "AgID" è usato solo in senso descrittivo. Il prefisso <code>it-</code> è provvisorio.
+    <div style="margin-top:.75rem"><a href="https://github.com/andreaderuvo/agid-llm-ui" style="font-weight:700">⌨ Codice e documentazione su GitHub →</a></div>
   </footer>
   <script src="it-components.js"></script>
   <script src="it-behavioral.bundle.js"></script>
@@ -622,21 +624,22 @@ const esempioComune = `<!doctype html>
     <div class="container">
       <strong>🤖 Esempio LLM-first.</strong>
       <span>Questa pagina è il tipo di risultato ottenibile da un prompt come: <code>${PROMPT_ESEMPIO}</code></span>
+      <a href="https://github.com/andreaderuvo/agid-llm-ui" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a>
     </div>
   </div>
 
   <it-header ente="Regione Esempio" nome="Comune di Esempio" tagline="Servizi digitali al cittadino"></it-header>
-  <div class="container" style="padding-top:.5rem">
-    <it-navbar>
-      <a href="#">Home</a>
-      <a href="#">Servizi</a>
-      <a href="#">Amministrazione</a>
-      <a href="#">Novità</a>
-      <a href="#">Contatti</a>
-    </it-navbar>
-  </div>
+  <it-navbar>
+    <a href="#">Home</a>
+    <a href="#">Servizi</a>
+    <a href="#">Amministrazione</a>
+    <a href="#">Novità</a>
+    <a href="#">Contatti</a>
+  </it-navbar>
 
-  <it-hero title="Benvenuto nel Comune di Esempio" category="Home">Trova e accedi ai servizi del Comune, paga i tributi e resta aggiornato.</it-hero>
+  <div class="container" style="margin-top:1.5rem">
+    <it-hero title="Benvenuto nel Comune di Esempio" category="Home">Trova e accedi ai servizi del Comune, paga i tributi e resta aggiornato.</it-hero>
+  </div>
 
   <main id="contenuto">
     <div class="container">
@@ -649,7 +652,7 @@ const esempioComune = `<!doctype html>
       <div class="grid">
         <it-card title="Anagrafe">Certificati, cambio di residenza e carta d'identità.</it-card>
         <it-card title="Tributi">Consulta e paga IMU, TARI e altri tributi comunali.</it-card>
-        <it-card title="Scuola e mensa">Iscrizioni ai servizi scolastici e refezione.</it-card>
+        <it-card title="Scuola e mensa">Iscrizioni ai servizi scolastici e refezione. <a href="servizio-mensa.html">Vai al servizio →</a></it-card>
       </div>
 
       <it-callout variant="warning" title="Avviso">Dal 1° settembre le domande per la mensa si presentano solo online.</it-callout>
@@ -712,6 +715,103 @@ const esempioComune = `<!doctype html>
 </html>
 `;
 writeFileSync(join(DIST, "esempio-comune.html"), esempioComune);
+
+// ---------------------------------------------------------------- 8b) pagina servizio (form a step)
+const servizioMensa = `<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iscrizione mensa — Comune di Esempio</title>
+  <link href="https://cdn.jsdelivr.net/npm/@fontsource/titillium-web@5/index.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="it-tokens.css">
+  <style>
+    body { margin: 0; }
+    .container { max-width: 1040px; margin: 0 auto; padding: 0 1rem; }
+    main { padding: 1.5rem 0 3rem; }
+    h1, h2 { color: var(--it-color-text); }
+    .lead { font-size: 1.15rem; color: var(--it-color-muted); }
+    .prompt-banner { background: var(--it-color-text); color: #fff; padding: 1rem 0; font-size: .95rem; }
+    .prompt-banner .container { display: flex; gap: .75rem; align-items: baseline; flex-wrap: wrap; }
+    .prompt-banner code { background: #ffffff22; padding: .15em .4em; border-radius: 4px; }
+    .field { margin: .75rem 0; } .backlink { display: inline-block; margin: 1rem 1rem 0 0; }
+  </style>
+</head>
+<body>
+  <a class="visually-hidden" href="#contenuto">Vai al contenuto</a>
+  <div class="prompt-banner"><div class="container">
+    <strong>🤖 Esempio LLM-first.</strong>
+    <span>Pagina di servizio con form a step, generabile da: <code>Crea la pagina del servizio "iscrizione alla mensa" conforme ad AgID, con una procedura a step (dati, scuola, documenti), accesso SPID e FAQ.</code></span>
+    <a href="https://github.com/andreaderuvo/agid-llm-ui" style="color:#fff;font-weight:700;white-space:nowrap">⌨ GitHub →</a>
+  </div></div>
+
+  <it-header ente="Regione Esempio" nome="Comune di Esempio" tagline="Servizi digitali al cittadino"></it-header>
+  <it-navbar>
+    <a href="index.html">Home</a>
+    <a href="#">Servizi</a>
+    <a href="#">Amministrazione</a>
+    <a href="#">Novità</a>
+    <a href="#">Contatti</a>
+  </it-navbar>
+
+  <main id="contenuto">
+    <div class="container">
+      <it-breadcrumb>
+        <a href="esempio-comune.html">Home</a>
+        <a href="#">Servizi</a>
+        <a>Iscrizione alla mensa</a>
+      </it-breadcrumb>
+
+      <h1>Iscrizione al servizio di mensa scolastica</h1>
+      <p class="lead">Iscrivi tuo figlio al servizio di refezione per l'anno scolastico 2026/2027.</p>
+
+      <it-callout variant="info" title="A chi è rivolto">Ai genitori di alunni iscritti alle scuole del Comune. Serve SPID/CIE e l'attestazione ISEE in corso di validità.</it-callout>
+
+      <h2>Compila la domanda</h2>
+      <it-steps>
+        <div data-step="Dati anagrafici">
+          <div class="field"><it-input label="Nome e cognome del genitore"></it-input></div>
+          <div class="field"><it-input label="Codice fiscale del genitore"></it-input></div>
+          <div class="field"><it-input label="Nome e cognome dell'alunno"></it-input></div>
+          <div class="field"><it-datepicker label="Data di nascita dell'alunno"></it-datepicker></div>
+        </div>
+        <div data-step="Scuola">
+          <div class="field"><it-select label="Plesso scolastico"><div data-value="a">Scuola Rodari</div><div data-value="b">Scuola Montessori</div></it-select></div>
+          <div class="field"><it-select label="Classe"><div data-value="1">Classe 1ª</div><div data-value="2">Classe 2ª</div><div data-value="3">Classe 3ª</div></it-select></div>
+        </div>
+        <div data-step="Documenti e invio">
+          <div class="field"><it-upload label="Allega l'attestazione ISEE"></it-upload></div>
+          <div class="field"><it-checkbox>Ho letto e accetto l'informativa sulla privacy</it-checkbox></div>
+          <it-dialog trigger="Invia la domanda" title="Confermi l'invio?">La domanda verrà inoltrata all'ufficio scuola. Vuoi procedere?</it-dialog>
+        </div>
+      </it-steps>
+
+      <h2>Oppure accedi con identità digitale</h2>
+      <p>Per precompilare i tuoi dati, accedi con SPID o CIE.</p>
+      <it-button>Accedi con SPID</it-button>
+
+      <h2 style="margin-top:2rem">Domande frequenti</h2>
+      <it-accordion>
+        <div data-header="Entro quando presento la domanda">Entro il 31 agosto 2026.</div>
+        <div data-header="Come pago la mensa">Con pagoPA dopo l'accettazione della domanda.</div>
+        <div data-header="Posso richiedere una dieta speciale">Sì, allegando il certificato medico nella sezione documenti.</div>
+      </it-accordion>
+
+      <div>
+        <a class="backlink" href="esempio-comune.html">← Torna alla home del Comune</a>
+        <a class="backlink" href="index.html">Galleria componenti</a>
+        <a class="backlink" href="https://github.com/andreaderuvo/agid-llm-ui">Codice su GitHub</a>
+      </div>
+    </div>
+  </main>
+
+  <div style="margin-top:2rem"><it-footer nome="Comune di Esempio"></it-footer></div>
+  <script defer src="it-components.js"></script>
+  <script defer src="it-behavioral.bundle.js"></script>
+</body>
+</html>
+`;
+writeFileSync(join(DIST, "servizio-mensa.html"), servizioMensa);
 
 console.log("✅ Generati da spec/ ->");
 console.log("   - dist/index.html            (GALLERIA componenti, pronta per GitHub Pages)");
