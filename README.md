@@ -26,7 +26,7 @@ Il punto di partenza sono alcune caratteristiche di **Bootstrap Italia** (il des
 
 Questo progetto è un **esperimento** per provare un approccio diverso: descrivere i componenti in una **spec machine-readable** e generare da lì gli artefatti — inclusi quelli che aiutano un LLM a produrre UI più conformi. Non pretende di essere completo né una soluzione definitiva: è un punto di partenza aperto ai contributi.
 
-Come funziona, in breve: da `sota/spec/` un piccolo codegen produce i **Web Components** (con l'accessibilità e il comportamento — focus, tastiera, stato — gestiti da macchine a stati **[Zag.js](https://zagjs.dev)**), i wrapper tipizzati, il CSS dai token, la documentazione, i contratti di validazione, la galleria e i dati per il **server [MCP](https://modelcontextprotocol.io)**. Cambiando la spec, gli artefatti si riallineano.
+Come funziona, in breve: da `sota/spec/` un piccolo codegen produce i **Web Components** (con l'accessibilità e il comportamento — focus, tastiera, stato — gestiti da macchine a stati **[Zag.js](https://zagjs.com)**), i wrapper tipizzati, il CSS dai token, la documentazione, i contratti di validazione, la galleria e i dati per il **server [MCP](https://modelcontextprotocol.io)**. Cambiando la spec, gli artefatti si riallineano.
 
 Note più estese: **[VISION.md](VISION.md)**.
 
@@ -172,7 +172,7 @@ Aggiungere un componente **presentazionale** = **un file spec** (`sota/spec/comp
 
 ## Riferimenti
 
-[Bootstrap Italia](https://italia.github.io/bootstrap-italia/) · [Designers Italia](https://designers.italia.it/) · [Zag.js](https://zagjs.dev) · [Model Context Protocol](https://modelcontextprotocol.io)
+[Bootstrap Italia](https://italia.github.io/bootstrap-italia/) · [Designers Italia](https://designers.italia.it/) · [Zag.js](https://zagjs.com) · [Model Context Protocol](https://modelcontextprotocol.io)
 
 ## Licenza
 
